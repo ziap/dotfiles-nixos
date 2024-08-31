@@ -5,7 +5,7 @@
     enable = true;
     package = pkgs.rofi-wayland;
     extraConfig = {
-      modi = "drun,run,ssh,filebrowser,powermenu:${config.xdg.configHome}/res/powermenu.lua";
+      modi = "drun,run,ssh,filebrowser,powermenu:${config.xdg.configHome}/generated/powermenu.lua";
       
       me-accept-entry = "MousePrimary";
       me-select-entry = "";
@@ -39,7 +39,7 @@
   ];
 
   home.file = {
-    "${config.xdg.configHome}/res/powermenu.lua" = {
+    "${config.xdg.configHome}/generated/powermenu.lua" = {
       text = let
         lock = "${pkgs.swaylock}/bin/swaylock";
         logout = "${pkgs.sway}/bin/swaymsg exit";

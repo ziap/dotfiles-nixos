@@ -136,7 +136,7 @@
 
       modes = {
         "${screenshotMode}" = let
-          screenshot = "${config.xdg.configHome}/res/screenshot.sh";
+          screenshot = "${config.xdg.configHome}/generated/screenshot.sh";
         in {
           "--to-code s" = "mode \"default\", exec ${screenshot} screen";
           "--to-code w" = "mode \"default\", exec ${screenshot} window";
@@ -158,7 +158,7 @@
   services.playerctld.enable = true;
 
   home.file = {
-    "${config.xdg.configHome}/res/screenshot.sh" = {
+    "${config.xdg.configHome}/generated/screenshot.sh" = {
       text = let
         grim = "${pkgs.grim}/bin/grim";
         slurp = "${pkgs.slurp}/bin/slurp";

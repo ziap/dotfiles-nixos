@@ -5,6 +5,7 @@
   imports = [
     ./zsh.nix
     ./git.nix
+    ./starship.nix
   ];
 
   home.packages = with pkgs; [
