@@ -31,7 +31,7 @@
       sort = true;
       sorting-method = "fzf";
     };
-    theme = "${config.xdg.configHome}/res/theme.rasi";
+    theme = "${config.xdg.configHome}/res/rofi-theme.rasi";
   };
 
   home.packages = with pkgs; [
