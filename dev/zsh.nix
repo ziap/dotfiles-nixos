@@ -1,13 +1,15 @@
 { config, pkgs, ... }:
 
 {
-  programs.zsh = let
-    eza = "${pkgs.eza}/bin/eza";
-    fd = "${pkgs.fd}/bin/fd";
-    rg = "${pkgs.ripgrep}/bin/rg";
-    bat = "${pkgs.bat}/bin/bat";
-    sk = "${pkgs.skim}/bin/sk";
-  in {
+  imports = [
+    ./starship.nix
+  ];
+
+  home.packages = with pkgs; [
+    eza fd ripgrep bat skim
+  ];
+
+  programs.zsh = {
     enable = true;
     enableCompletion = true;
     completionInit = ''
@@ -31,6 +33,7 @@
       ];
     };
     syntaxHighlighting.enable = true;
+
     initExtra = ''
       ## Activate vi mode.
       bindkey -v
@@ -63,16 +66,16 @@
       bindkey -M main '^B' backward-char
 
       ## Fuzzy finder utilities
-      function frm { ${fd} --type=file | ${sk} -m --preview 'file {}' | xargs -d '\n' rm }
-      function fcd { cd "$(${fd} --type=d | ${sk} --preview '${eza} {} --icons -la')" }
-      function fgd { cd $(dirname $(${fd} -H -g \*.git ~/*/) | ${sk} --preview '${eza} {} --git-ignore --icons -T') }
-      function fca { ${bat} "$(${fd} --type=file | ${sk} --preview='${bat} {} --theme=gruvbox-dark --color=always')" }
-      function fxo { xdg-open "$(${fd} --type=file | ${sk} --preview 'file {}')" }
-      function frg { ${sk} --ansi -ic "${rg} {} --color=always --line-number" }
+      function frm { fd --type=file | sk -m --preview 'file {}' | xargs -d '\n' rm }
+      function fcd { cd "$(fd --type=d | sk --preview 'eza {} --icons -la')" }
+      function fgd { cd $(dirname $(fd -H -g \*.git ~/*/) | sk --preview 'eza {} --git-ignore --icons -T') }
+      function fca { bat "$(fd --type=file | sk --preview='bat {} --theme=gruvbox-dark --color=always')" }
+      function fxo { xdg-open "$(fd --type=file | sk --preview 'file {}')" }
+      function frg { sk --ansi -ic "rg {} --color=always --line-number" }
     '';
     shellAliases = {
-      ls = "${eza} --git --icons";
-      cat = "${bat} --theme=gruvbox-dark";
+      ls = "eza --git --icons";
+      cat = "bat --theme=gruvbox-dark";
     };
     history = {
       size = 10000;

@@ -40,12 +40,8 @@
 
   home.file = {
     "${config.xdg.configHome}/generated/powermenu.lua" = {
-      text = let
-        lock = "${pkgs.swaylock}/bin/swaylock";
-        logout = "${pkgs.sway}/bin/swaymsg exit";
-        luajit = "${pkgs.luajit}/bin/luajit";
-      in ''
-        #!${luajit}
+      text = ''
+        #!${pkgs.luajit}/bin/luajit
         
         -- Use a list because table keys are randomly sorted
         -- It's also easier to add options or edit them this way
@@ -68,12 +64,12 @@
           {
             name = "Lock",
             icon = "system-lock-screen",
-            command = "${lock}"
+            command = "swaylock"
           },
           {
             name = "Log out",
             icon = "system-log-out",
-            command = "${logout}"
+            command = "swaymsg exit"
           }
         }
         

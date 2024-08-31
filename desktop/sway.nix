@@ -56,13 +56,13 @@
         "urgent" = mkColor "#cc241d" "#ebdbb2";
       };
       keybindings = let
-        term = "${pkgs.foot}/bin/footclient";
-        menu = "${pkgs.rofi-wayland}/bin/rofi -show drun | ${pkgs.sway}/bin/swaymsg";
-        file = "${pkgs.rofi-wayland}/bin/rofi -show filebrowser | ${pkgs.sway}/bin/swaymsg";
-        power = "${pkgs.rofi-wayland}/bin/rofi -show powermenu | ${pkgs.sway}/bin/swaymsg";
-        lock = "${pkgs.swaylock}/bin/swaylock";
-        browser = "${pkgs.firefox}/bin/firefox";
-        privateBrowser = "${pkgs.firefox}/bin/firefox --private-window";
+        term = "footclient";
+        menu = "rofi -show drun | swaymsg";
+        file = "rofi -show filebrowser | swaymsg";
+        power = "rofi -show powermenu | swaymsg";
+        lock = "swaylock";
+        browser = "firefox";
+        privateBrowser = "firefox --private-window";
 
         left = "h";
         right = "l";
@@ -72,7 +72,7 @@
         workspaces = ["1" "2" "3" "4" "5" "6" "7" "8" "9" "10"];
         resizeFactor = "40px";
 
-        light = "${pkgs.light}/bin/light";
+        light = "light";
         pactl = "${pkgs.pulseaudio}/bin/pactl";
         playerctl = "${pkgs.playerctl}/bin/playerctl";
       in {
@@ -148,7 +148,7 @@
       };
 
       bars = [
-        { command = "${pkgs.waybar}/bin/waybar"; }
+        { command = "waybar"; }
       ];
     };
 
@@ -171,7 +171,7 @@
           screen) ${grim} - | ${wl-copy};;
           region) ${grim} -g "$(${slurp})" - | ${wl-copy};;
           window) ${grim} -g "$(
-            ${pkgs.sway}/bin/swaymsg -t get_tree \
+            $swaymsg -t get_tree \
               | ${jq} -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' \
               | ${slurp}
           )" - | ${wl-copy};;
