@@ -62,7 +62,7 @@
         power = "${pkgs.rofi-wayland}/bin/rofi -show powermenu | ${pkgs.sway}/bin/swaymsg";
         lock = "${pkgs.swaylock}/bin/swaylock";
         browser = "${pkgs.firefox}/bin/firefox";
-        privateBrowser = "${pkgs.firefox} --private-window";
+        privateBrowser = "${pkgs.firefox}/bin/firefox --private-window";
 
         left = "h";
         right = "l";
