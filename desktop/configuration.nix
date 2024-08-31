@@ -5,6 +5,8 @@
   imports = [
     ./foot.nix
     ./rofi.nix
+    ./sway.nix
+    ./swaylock.nix
   ];
 
   home.packages = with pkgs; [
