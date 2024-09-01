@@ -9,9 +9,6 @@
 window#waybar {
   background-color: #282828;
   color: #ebdbb2;
-  transition-property: background-color;
-  transition-duration: 0.5s;
-  border-bottom: solid 0px #3c3836;
 }
 
 window#waybar.hidden {
@@ -27,7 +24,6 @@ window#waybar.hidden {
 #workspaces button.focused {
   background-color: #ebdbb2;
   color: #282828;
-  border-bottom: none;
 }
 
 #workspaces button.urgent {
