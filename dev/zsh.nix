@@ -5,10 +5,6 @@
     ./starship.nix
   ];
 
-  home.packages = with pkgs; [
-    eza fd ripgrep bat skim
-  ];
-
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -19,12 +15,6 @@
       zmodload zsh/complist
       compinit
       _comp_options+=(globdots)	
-
-      ## Vim binding in tab completion select menu
-      bindkey -M menuselect 'h' vi-backward-char
-      bindkey -M menuselect 'j' vi-down-line-or-history
-      bindkey -M menuselect 'k' vi-up-line-or-history
-      bindkey -M menuselect 'l' vi-forward-char
     '';
     autosuggestion = {
       enable = true;

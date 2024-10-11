@@ -12,6 +12,5 @@
 
   home.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "FiraCode" "RobotoMono" "VictorMono" ]; })
-    htop neofetch
   ];
 }

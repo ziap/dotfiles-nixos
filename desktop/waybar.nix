@@ -44,7 +44,7 @@
             car = "";
             default = [ "" "" "" ];
           };
-          on-click = "pavucontrol";
+          on-click = "${pkgs.pavucontrol}/bin/pavucontrol";
         };
         network = {
           format = "{ifname}";

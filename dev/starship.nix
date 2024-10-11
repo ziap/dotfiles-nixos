@@ -5,7 +5,7 @@
     enable = true;
     settings = {
       format = ''
-[░▒▓](fg:purple)$username[](bg:cyan fg:purple)$directory[](fg:cyan bg:yellow)$git_branch$git_status[](fg:yellow bg:blue)$python$elixir$elm$golang$java$julia$nodejs$nim$rust[](fg:blue bg:bright-blue)$docker_context[](fg:bright-blue)
+[░▒▓](fg:purple)$username[](bg:cyan fg:purple)$directory[](fg:cyan bg:yellow)$git_branch$git_status[](fg:yellow bg:blue)$python$elixir$elm$golang$java$julia$nodejs$nim$rust[](fg:blue bg:bright-blue)$docker_context[](fg:bright-blue)
 $character'';
       username = {
         show_always = true;
