@@ -3,6 +3,7 @@
 {
   wayland.windowManager.sway = {
     enable = true;
+    extraOptions = ["--unsupported-gpu"];
     config = let
       screenshotMode = "Screenshot: [s]creen [w]window [r]egion";
       mod = "Mod4";
