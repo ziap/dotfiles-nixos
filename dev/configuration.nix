@@ -6,6 +6,7 @@
     ./nvim.nix
     ./fish.nix
     ./zsh.nix
+    ./bat.nix
     ./git.nix
     ./starship.nix
   ];

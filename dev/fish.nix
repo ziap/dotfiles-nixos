@@ -1,11 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  imports = [
-    ./starship.nix
-    ./bat.nix
-  ];
-
   home.packages = with pkgs; [
     eza fd ripgrep skim
   ];

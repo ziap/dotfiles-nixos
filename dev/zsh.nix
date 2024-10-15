@@ -1,11 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  imports = [
-    ./starship.nix
-    ./bat.nix
-  ];
-
   programs.zsh = {
     enable = true;
     enableCompletion = true;
