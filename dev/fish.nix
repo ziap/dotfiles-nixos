@@ -3,16 +3,12 @@
 {
   imports = [
     ./starship.nix
+    ./bat.nix
   ];
 
   home.packages = with pkgs; [
-    eza fd ripgrep bat skim
+    eza fd ripgrep skim
   ];
-
-  home.sessionVariables = {
-    EDITOR = "vim";
-  };
-
 
   programs.fish = {
     enable = true;
@@ -31,6 +27,7 @@
       la = "ls -a";
       lla = "ls -la";
       cdtemp = "cd (mktemp -d)";
+      nv = "nvim";
     };
 
     interactiveShellInit = ''

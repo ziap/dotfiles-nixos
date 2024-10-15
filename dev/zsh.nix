@@ -3,6 +3,7 @@
 {
   imports = [
     ./starship.nix
+    ./bat.nix
   ];
 
   programs.zsh = {
@@ -65,7 +66,8 @@
     '';
     shellAliases = {
       ls = "eza --git --icons";
-      cat = "bat --theme=gruvbox-dark";
+      cat = "bat";
+      nv = "nvim";
     };
     history = {
       size = 10000;
