@@ -10,27 +10,29 @@
 	font-italic = "VictorMono Nerd Font:style=SemiBold Italic:pixelsize=18";
         initial-window-size-chars = "80x32";
       };
-      colors = {
-        background = "282828";
-        foreground = "EBDBB2";
+      colors = let
+        theme = import ../themes/current-theme.nix;
+      in {
+        background = "${theme.background0}";
+        foreground = "${theme.foreground}";
         
-        regular0 = "282828";
-        regular1 = "CC241D";
-        regular2 = "98971A";
-        regular3 = "D79921";
-        regular4 = "458588";
-        regular5 = "B16286";
-        regular6 = "689D6A";
-        regular7 = "A89984";
-        
-        bright0 = "928374";
-        bright1 = "FB4934";
-        bright2 = "B8BB26";
-        bright3 = "FABD2F";
-        bright4 = "83A598";
-        bright5 = "D3869B";
-        bright6 = "8EC07C";
-        bright7 = "EBDBB2";
+        regular0 = "${theme.regular0}";
+        regular1 = "${theme.regular1}";
+        regular2 = "${theme.regular2}";
+        regular3 = "${theme.regular3}";
+        regular4 = "${theme.regular4}";
+        regular5 = "${theme.regular5}";
+        regular6 = "${theme.regular6}";
+        regular7 = "${theme.regular7}";
+
+        bright0 = "${theme.bright0}";
+        bright1 = "${theme.bright1}";
+        bright2 = "${theme.bright2}";
+        bright3 = "${theme.bright3}";
+        bright4 = "${theme.bright4}";
+        bright5 = "${theme.bright5}";
+        bright6 = "${theme.bright6}";
+        bright7 = "${theme.bright7}";
       };
       cursor = {
         beam-thickness = 1;

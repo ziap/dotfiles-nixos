@@ -30,7 +30,6 @@ end
 
 require'lualine'.setup {
   options = {
-    theme = 'gruvbox',
     component_separators = {
       left = '\u{E0B9}',
       right = '\u{E0B7}'

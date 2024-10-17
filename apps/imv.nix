@@ -4,7 +4,9 @@
   programs.imv = {
     enable = true;
     settings = {
-      options.background = "282828";
+      options.background = let
+        theme = import ../themes/current-theme.nix;
+      in "${theme.background0}";
     };
   };
 }

@@ -7,9 +7,10 @@
     config = let
       screenshotMode = "Screenshot: [s]creen [w]window [r]egion";
       mod = "Mod4";
+      theme = import ../themes/current-theme.nix;
     in {
       output."*" = {
-        "bg" = "${config.xdg.configHome}/res/wallpaper.png fill";
+        "bg" = "${config.xdg.configHome}/res/wall-${theme.name}.png fill";
       };
       gaps = {
         "inner" = 6;
@@ -50,11 +51,11 @@
           childBorder = bg;
         };
       in {
-        "background" = "#282828";
-        "focused" = mkColor "#ebdbb2" "#3c3836";
-        "focusedInactive" = mkColor "#3c3836" "#ebdbb2";
-        "unfocused" = mkColor "#3c3836" "#ebdbb2";
-        "urgent" = mkColor "#cc241d" "#ebdbb2";
+        "background" = "#${theme.background0}";
+        "focused" = mkColor "#${theme.foreground}" "#${theme.background1}";
+        "focusedInactive" = mkColor "#${theme.background1}" "#${theme.foreground}";
+        "unfocused" = mkColor "#${theme.background1}" "#${theme.foreground}";
+        "urgent" = mkColor "#${theme.regular1}" "#${theme.foreground}";
       };
       keybindings = let
         term = "footclient";

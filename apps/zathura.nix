@@ -3,40 +3,42 @@
 {
   programs.zathura = {
     enable = true;
-    options = {
+    options = let
+      theme = import ../themes/current-theme.nix;
+    in {
       selection-clipboard = "clipboard";
 
       font = "FiraCode Nerd Font 12";
 
-      default-bg = "#282828";
-      default-fg = "#ebdbb2";
+      default-bg = "#${theme.background0}";
+      default-fg = "#${theme.foreground}";
 
-      completion-bg = "#3c3836";
-      completion-fg = "#ebdbb2";
-      completion-highlight-bg = "#83a598";
-      completion-highlight-fg = "#282828";
-      completion-group-bg = "#3c3836";
-      completion-group-fg = "#ebdbb2";
+      completion-bg = "#${theme.background1}";
+      completion-fg = "#${theme.foreground}";
+      completion-highlight-bg = "#${theme.bright4}";
+      completion-highlight-fg = "#${theme.background0}";
+      completion-group-bg = "#${theme.background1}";
+      completion-group-fg = "#${theme.foreground}";
       
-      statusbar-bg = "#3c3836";
-      statusbar-fg = "#ebdbb2";
+      statusbar-bg = "#${theme.background1}";
+      statusbar-fg = "#${theme.foreground}";
       
-      inputbar-bg = "#3c3836";
-      inputbar-fg = "#ebdbb2";
+      inputbar-bg = "#${theme.background1}";
+      inputbar-fg = "#${theme.foreground}";
       
-      notification-bg = "#3c3836";
-      notification-fg = "#ebdbb2";
-      notification-error-bg = "#3c3836";
-      notification-error-fg = "#fb4934";
-      notification-warning-bg = "#3c3836";
-      notification-warning-fg = "#fabd2f";
+      notification-bg = "#${theme.background1}";
+      notification-fg = "#${theme.foreground}";
+      notification-error-bg = "#${theme.background1}";
+      notification-error-fg = "#${theme.bright1}";
+      notification-warning-bg = "#${theme.background1}";
+      notification-warning-fg = "#${theme.bright3}";
       
-      highlight-color = "#83a598";
+      highlight-color = "#${theme.bright4}";
       
       recolor = true;
       recolor-keephue = true;
-      recolor-lightcolor = "#282828";
-      recolor-darkcolor = "#ebdbb2" ;
+      recolor-lightcolor = "#${theme.background0}";
+      recolor-darkcolor = "#${theme.foreground}" ;
     };
   };
 }

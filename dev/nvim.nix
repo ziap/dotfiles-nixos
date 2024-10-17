@@ -4,14 +4,15 @@
   programs.neovim = let
     to_lua = str: "lua << EOF\n${str}\nEOF\n";
     to_lua_file = filename: "lua << EOF\n${builtins.readFile filename}\nEOF\n";
+    theme = import ../themes/current-theme.nix;
   in {
     enable = true;
     defaultEditor = true;
     plugins = with pkgs.vimPlugins; [
       {
-        plugin = gruvbox-nvim;
+        plugin = pkgs.vimPlugins.${theme.nvim.plugin};
         config = ''
-          colorscheme gruvbox
+          colorscheme ${theme.nvim.colorscheme}
           set background=dark
         '';
       }

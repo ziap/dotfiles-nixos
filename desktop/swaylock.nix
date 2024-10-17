@@ -3,35 +3,37 @@
 {
   programs.swaylock = {
     enable = true;
-    settings = {
+    settings = let
+      theme = import ../themes/current-theme.nix;
+    in {
       ignore-empty-password = true;
       
-      color = "282828cd";
+      color = "${theme.background0}cd";
       indicator-radius = 80;
       indicator-thickness = 25;
       
-      key-hl-color = "b8bb26";
-      bs-hl-color = "fb4934";
+      key-hl-color = "${theme.bright2}";
+      bs-hl-color = "${theme.bright1}";
       
-      separator-color = "282828cd";
+      separator-color = "${theme.background0}cd";
       
-      line-color = "282828";
+      line-color = "${theme.background0}";
       
-      inside-color = "282828";
-      inside-clear-color = "fabd2f";
-      inside-ver-color = "83a598";
-      inside-wrong-color = "fb4934";
+      inside-color = "${theme.background0}";
+      inside-clear-color = "${theme.bright3}";
+      inside-ver-color = "${theme.bright4}";
+      inside-wrong-color = "${theme.bright1}";
       
-      ring-color = "98971a";
-      ring-ver-color = "458588";
-      ring-clear-color = "b57614";
-      ring-wrong-color = "cc241d";
+      ring-color = "${theme.bright0}";
+      ring-ver-color = "${theme.regular4}";
+      ring-clear-color = "${theme.regular3}";
+      ring-wrong-color = "${theme.regular1}";
 
-      text-color = "282828";
-      text-clear-color = "282828";
-      text-caps-lock-color = "282828";
-      text-ver-color = "282828";
-      text-wrong-color = "282828";
+      text-color = "${theme.background0}";
+      text-clear-color = "${theme.background0}";
+      text-caps-lock-color = "${theme.background0}";
+      text-ver-color = "${theme.background0}";
+      text-wrong-color = "${theme.background0}";
     };
   };
 }
