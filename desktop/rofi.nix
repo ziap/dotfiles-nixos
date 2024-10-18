@@ -10,7 +10,6 @@
       me-accept-entry = "MousePrimary";
       me-select-entry = "";
       show-icons = true;
-      icon-theme = "ePapirus";
       application-fallback-icon = "run-build";
       
       drun-display-format = " {name} ";
@@ -33,10 +32,6 @@
     };
     theme = "${config.xdg.configHome}/generated/rofi-theme.rasi";
   };
-
-  home.packages = with pkgs; [
-    epapirus-icon-theme
-  ];
 
   home.file = {
     "${config.xdg.configHome}/generated/rofi-theme.rasi".text = let

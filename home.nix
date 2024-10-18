@@ -12,12 +12,6 @@
     ./desktop/configuration.nix
   ];
 
-  dconf.settings = {
-    "org/gnome/desktop/interface" = {
-      color-scheme = "prefer-dark";
-    };
-  };
-
   fonts.fontconfig.enable = true;
 
   home.file = {
@@ -25,10 +19,6 @@
       source = ./res;
       recursive = true;
     };
-  };
-
-  home.sessionVariables = {
-    # EDITOR = "emacs";
   };
 
   # Let Home Manager install and manage itself.

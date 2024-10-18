@@ -5,16 +5,16 @@
     enable = true;
     settings = {
       format = ''
-[░▒▓](fg:purple)$username[](bg:cyan fg:purple)$directory[](fg:cyan bg:yellow)$git_branch$git_status[](fg:yellow bg:blue)$python$elixir$elm$golang$java$julia$nodejs$nim$rust[](fg:blue bg:bright-blue)$docker_context[](fg:bright-blue)
+[░▒▓](fg:white)$username[](bg:bright-blue fg:white)$directory[](fg:bright-blue bg:bright-cyan)$git_branch$git_status[](fg:bright-cyan bg:bright-green)$python$elixir$elm$golang$java$julia$nodejs$nim$rust[](fg:bright-green bg:bright-yellow)$docker_context[](fg:bright-yellow)
 $character'';
       username = {
         show_always = true;
-        style_user = "bg:purple";
-        style_root = "bg:purple bold";
+        style_user = "bg:white fg:black bold";
+        style_root = "bg:white fg:black bold";
         format = "[ 󱄅 $user ]($style)";
       };
       directory = {
-        style = "bg:cyan";
+        style = "bg:bright-blue fg:black";
         format = "[ $path ]($style)";
         truncation_length = 3;
         truncation_symbol = "…/";
@@ -27,64 +27,63 @@ $character'';
       };
       git_branch = {
         symbol = "";
-        style = "bg:yellow";
-        format = "[[ $symbol $branch ](bg:yellow)]($style)";
+        style = "bg:bright-cyan fg:black";
+        format = "[[ $symbol $branch ](bg:bright-cyan fg:black)]($style)";
       };
       git_status = {
-        style = "bg:yellow";
-        format = "[[($all_status$ahead_behind )](bg:yellow)]($style)";
+        style = "bg:bright-cyan fg:black";
+        format = "[[($all_status$ahead_behind )](bg:bright-cyan fg:black)]($style)";
       };
       docker_context = {
         symbol = "";
-        style = "bg:bright-blue";
-        format = "[[ $symbol $context ](bg:#06969A)]($style) $path";
+        style = "bg:bright-yellow fg:black";
+        format = "[[ $symbol $context ](bg:bright-yellow fg:black)]($style) $path";
       };
       python = {
         symbol = "";
-        style = "bg:blue";
-        format = "[[ $symbol ($version) (\\($virtualenv\\)) ](bg:blue)]($style)";
+        style = "bg:bright-green fg:black";
+        format = "[[ $symbol ($version) (\\($virtualenv\\)) ](bg:bright-green fg:black)]($style)";
       };
       elixir = {
         symbol = "";
-        style = "bg:blue";
-        format = "[[ $symbol ($version) ](bg:blue)]($style)";
+        style = "bg:bright-green fg:black";
+        format = "[[ $symbol ($version) ](bg:bright-green fg:black)]($style)";
       };
       elm = {
         symbol = "";
-        style = "bg:blue";
-        format = "[[ $symbol ($version) ](bg:blue)]($style)";
+        style = "bg:bright-green fg:black";
+        format = "[[ $symbol ($version) ](bg:bright-green fg:black)]($style)";
       };
       golang = {
         symbol = "";
-        style = "bg:blue";
-        format = "[[ $symbol ($version) ](bg:blue)]($style)";
+        style = "bg:bright-green fg:black";
+        format = "[[ $symbol ($version) ](bg:bright-green fg:black)]($style)";
       };
       java = {
         symbol = "";
-        style = "bg:blue";
-        format = "[[ $symbol ($version) ](bg:blue)]($style)";
+        style = "bg:bright-green fg:black";
+        format = "[[ $symbol ($version) ](bg:bright-green fg:black)]($style)";
       };
       julia = {
         symbol = "";
-        style = "bg:blue";
-        format = "[[ $symbol ($version) ](bg:blue)]($style)";
+        style = "bg:bright-green fg:black";
+        format = "[[ $symbol ($version) ](bg:bright-green fg:black)]($style)";
       };
       nodejs = {
         symbol = "";
-        style = "bg:blue";
-        format = "[[ $symbol ($version) ](bg:blue)]($style)";
+        style = "bg:bright-green fg:black";
+        format = "[[ $symbol ($version) ](bg:bright-green fg:black)]($style)";
       };
       nim = {
         symbol = "";
-        style = "bg:blue";
-        format = "[[ $symbol ($version) ](bg:blue)]($style)";
+        style = "bg:bright-green fg:black";
+        format = "[[ $symbol ($version) ](bg:bright-green fg:black)]($style)";
       };
       rust = {
         symbol = "";
-        style = "bg:blue";
-        format = "[[ $symbol ($version) ](bg:blue)]($style)";
+        style = "bg:bright-green fg:black";
+        format = "[[ $symbol ($version) ](bg:bright-green fg:black)]($style)";
       };
     };
   };
-
 }

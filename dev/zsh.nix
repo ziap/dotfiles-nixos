@@ -55,7 +55,7 @@
       function frm { fd --type=file | sk -m --preview 'file {}' | xargs -d '\n' rm }
       function fcd { cd "$(fd --type=d | sk --preview 'eza {} --icons -la')" }
       function fgd { cd $(dirname $(fd -H -g \*.git ~/*/) | sk --preview 'eza {} --git-ignore --icons -T') }
-      function fca { bat "$(fd --type=file | sk --preview='bat {} --theme=gruvbox-dark --color=always')" }
+      function fca { bat "$(fd --type=file | sk --preview='bat {} --color=always')" }
       function fxo { xdg-open "$(fd --type=file | sk --preview 'file {}')" }
       function frg { sk --ansi -ic "rg {} --color=always --line-number" }
     '';

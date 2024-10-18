@@ -1,5 +1,5 @@
 {
-  name = "catppuccin-mocha";
+  name = "catppuccin-macchiato";
 
   foreground = "cad3f5";
   background0 = "24273a";
