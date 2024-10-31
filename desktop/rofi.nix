@@ -12,9 +12,9 @@
       show-icons = true;
       application-fallback-icon = "run-build";
       
+      terminal = "kitty";
+      ssh-command = "kitty -- kitten ssh {host}";
       drun-display-format = " {name} ";
-      run-shell-command = "foot {cmd}";
-      ssh-command = "foot --term=xterm ssh {host}";
       sidebar-mode = true;
       matching = "fuzzy";
       scroll-method = 0;

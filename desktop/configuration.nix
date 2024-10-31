@@ -3,7 +3,7 @@
 {
   # Configure essential programs for the desktop environment
   imports = [
-    ./foot.nix
+    ./kitty.nix
     ./rofi.nix
     ./sway.nix
     ./swaylock.nix

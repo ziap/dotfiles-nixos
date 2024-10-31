@@ -68,6 +68,7 @@
         config = to_lua "require'nvim-autopairs'.setup {}";
       }
     ];
+
     extraPackages = with pkgs; [
       xclip
       wl-clipboard
@@ -77,11 +78,12 @@
       nodePackages.typescript-language-server
       emmet-ls
       clang-tools
+      clang
     ];
+
     extraLuaConfig = ''
       ${builtins.readFile ./nvim/options.lua}
       ${builtins.readFile ./nvim/keymap.lua}
-
       ${builtins.readFile ./nvim/autocmd.lua}
     '';
   };
