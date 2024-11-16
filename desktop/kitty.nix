@@ -6,7 +6,7 @@
     settings = let
       theme = import ../themes/current-theme.nix;
     in {
-      font_family             = "family='FiraCode Nerd Font'";
+      font_family             = "FiraCode Nerd Font";
       bold_font               = "family='FiraCode Nerd Font', style='Bold'";
       italic_font             = "family='VictorMono Nerd Font' style='SemiBold Italic'";
       bold_italic_font        = "family='VictorMono Nerd Font' style='Bold Italic'";

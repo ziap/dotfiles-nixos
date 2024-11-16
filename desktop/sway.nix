@@ -58,7 +58,7 @@
         "urgent" = mkColor "#${theme.regular1}" "#${theme.foreground}";
       };
       keybindings = let
-        term = "kitty";
+        term = "kitty -e fish";
         menu = "rofi -show drun | swaymsg";
         file = "rofi -show filebrowser | swaymsg";
         power = "rofi -show powermenu | swaymsg";
