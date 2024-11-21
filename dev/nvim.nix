@@ -78,7 +78,6 @@
       nodePackages.typescript-language-server
       emmet-ls
       clang-tools
-      clang
     ];
 
     extraLuaConfig = ''

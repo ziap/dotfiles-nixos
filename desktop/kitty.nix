@@ -17,6 +17,8 @@
       initial_window_height   = "36c";
       confirm_os_window_close = 0;
 
+      shell                   = "fish";
+
       cursor                  = "none";
       url_color               = "#${theme.bright4}";
       visual_bell_color       = "#${theme.bright6}";

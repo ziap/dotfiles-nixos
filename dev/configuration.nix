@@ -15,6 +15,7 @@
     tokei
     htop
 
+    clang
     # Everything else can be installed in nix-shells
   ];
 }
