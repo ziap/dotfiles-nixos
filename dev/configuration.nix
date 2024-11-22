@@ -11,6 +11,10 @@
     ./starship.nix
   ];
 
+  home.sessionVariables = {
+    MANPAGER = "nvim +Man!";
+  };
+
   home.packages = with pkgs; [
     tokei
     htop

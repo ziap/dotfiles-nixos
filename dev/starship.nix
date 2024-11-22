@@ -5,13 +5,17 @@
     enable = true;
     settings = {
       format = ''
-[░▒▓](fg:white)$username[](bg:bright-blue fg:white)$directory[](fg:bright-blue bg:bright-cyan)$git_branch$git_status[](fg:bright-cyan bg:bright-green)$python$elixir$elm$golang$java$julia$nodejs$nim$rust[](fg:bright-green bg:bright-yellow)$docker_context[](fg:bright-yellow)
+[░▒▓](fg:white)$username$nix_shell[](bg:bright-blue fg:white)$directory[](fg:bright-blue bg:bright-cyan)$git_branch$git_status[](fg:bright-cyan bg:bright-green)$python$elixir$elm$golang$java$julia$nodejs$nim$rust[](fg:bright-green bg:bright-yellow)$docker_context[](fg:bright-yellow)
 $character'';
       username = {
         show_always = true;
         style_user = "bg:white fg:black bold";
         style_root = "bg:white fg:black bold";
         format = "[ 󱄅 $user ]($style)";
+      };
+      nix_shell = {
+        style = "bg:white fg:black bold";
+        format = "[\\($name\\) ]($style)";
       };
       directory = {
         style = "bg:bright-blue fg:black";

@@ -23,6 +23,7 @@
       lla = "ls -la";
       cdtemp = "cd (mktemp -d)";
       nv = "nvim";
+      nix-shell = "nix-shell --run fish";
     };
 
     interactiveShellInit = ''
