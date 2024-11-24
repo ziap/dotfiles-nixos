@@ -13,6 +13,14 @@
         mkdir $argv
         cd $argv
       '';
+
+      forward-or-edit = ''
+        if commandline -P
+          commandline -f forward-char
+        else
+          edit_command_buffer
+        end
+      '';
     };
 
     shellAliases = {
@@ -30,15 +38,12 @@
       # Disable greeting
       set fish_greeting
 
-      function fish_hybrid_key_bindings
-        # Emacs binding in insert mode
-        fish_default_key_bindings -M insert
-        fish_vi_key_bindings --no-erase
-      end
-
-      set -g fish_key_bindings fish_hybrid_key_bindings
+      set -g fish_key_bindings fish_vi_key_bindings
       bind -M insert -k nul accept-autosuggestion
-      bind -M insert \cF edit_command_buffer
+      bind -M insert \cP up-or-search
+      bind -M insert \cN down-or-search
+      bind -M insert \cF forward-or-edit
+      bind -M insert \cB backward-char
 
       set fish_cursor_default block
       set fish_cursor_insert line

@@ -16,6 +16,7 @@
       initial_window_width    = "100c";
       initial_window_height   = "36c";
       confirm_os_window_close = 0;
+      input_delay             = 0;
 
       shell                   = "fish";
 
