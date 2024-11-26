@@ -7,9 +7,9 @@
   home.stateVersion = "23.11"; # Please read the comment before changing.
 
   imports = [
-    ./dev/configuration.nix
-    ./apps/configuration.nix
-    ./desktop/configuration.nix
+    ./dev/index.nix
+    ./apps/index.nix
+    ./desktop/index.nix
   ];
 
   fonts.fontconfig.enable = true;

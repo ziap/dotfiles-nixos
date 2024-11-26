@@ -3,7 +3,7 @@
 {
   # Configure the development environment
   imports = [
-    ./nvim.nix
+    ./nvim/index.nix
     ./fish.nix
     ./zsh.nix
     ./bat.nix
