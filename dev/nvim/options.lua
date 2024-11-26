@@ -19,6 +19,9 @@ end, nil)
 -- Status
 vim.opt.laststatus = 2
 
+-- Wrap
+vim.opt.wrap = false
+
 -- Indentation
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
