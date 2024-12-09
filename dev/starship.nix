@@ -74,7 +74,7 @@ $character'';
         format = "[[ $symbol ($version) ](bg:bright-green fg:black)]($style)";
       };
       nodejs = {
-        symbol = "";
+        symbol = "";
         style = "bg:bright-green fg:black";
         format = "[[ $symbol ($version) ](bg:bright-green fg:black)]($style)";
       };
