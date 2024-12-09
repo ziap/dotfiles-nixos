@@ -46,6 +46,9 @@
           p.tree-sitter-jsdoc
           p.tree-sitter-glsl
           p.tree-sitter-nix
+          p.tree-sitter-toml
+          p.tree-sitter-json
+          p.tree-sitter-jsonc
         ]));
         config = to_lua_file ./nvim/plugins/treesitter.lua;
       }
