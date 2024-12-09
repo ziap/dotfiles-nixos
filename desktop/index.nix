@@ -11,6 +11,8 @@
   ];
 
   home.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "FiraCode" "RobotoMono" "VictorMono" ]; })
+    nerd-fonts.fira-code
+    nerd-fonts.roboto-mono
+    nerd-fonts.victor-mono
   ];
 }

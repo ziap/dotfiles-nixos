@@ -4,7 +4,7 @@
   programs.neovim = let
     to_lua = str: "lua << EOF\n${str}\nEOF\n";
     to_lua_file = filename: "lua << EOF\n${builtins.readFile filename}\nEOF\n";
-    theme = import ../themes/current-theme.nix;
+    theme = import ../../themes/current-theme.nix;
   in {
     enable = true;
     defaultEditor = true;
@@ -18,7 +18,7 @@
       }
       {
         plugin = lualine-nvim;
-        config = to_lua_file ./nvim/plugins/lualine.lua;
+        config = to_lua_file ./plugins/lualine.lua;
       }
       {
         plugin = nvim-ts-autotag;
@@ -50,11 +50,11 @@
           p.tree-sitter-json
           p.tree-sitter-jsonc
         ]));
-        config = to_lua_file ./nvim/plugins/treesitter.lua;
+        config = to_lua_file ./plugins/treesitter.lua;
       }
       {
         plugin = nvim-lspconfig;
-        config = to_lua_file ./nvim/plugins/lsp.lua;
+        config = to_lua_file ./plugins/lsp.lua;
       }
       cmp-nvim-lsp
       vim-vsnip
@@ -64,7 +64,7 @@
       cmp-cmdline
       {
         plugin = nvim-cmp;
-        config = to_lua_file ./nvim/plugins/cmp.lua;
+        config = to_lua_file ./plugins/cmp.lua;
       }
       {
         plugin = nvim-autopairs;
@@ -84,9 +84,9 @@
     ];
 
     extraLuaConfig = ''
-      ${builtins.readFile ./nvim/options.lua}
-      ${builtins.readFile ./nvim/keymap.lua}
-      ${builtins.readFile ./nvim/autocmd.lua}
+      ${builtins.readFile ./options.lua}
+      ${builtins.readFile ./keymap.lua}
+      ${builtins.readFile ./autocmd.lua}
     '';
   };
 }
