@@ -51,7 +51,8 @@
       color15                 = "#${theme.bright7}";
 
       cursor                  = "none";
-      cursor_trail            = 1;
+      cursor_trail            = 3;
+      cursor_trail_decay      = "0.1 0.3";
     };
   };
 }
