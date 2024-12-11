@@ -39,6 +39,12 @@ TBA
     # Enable light
     programs.light.enable = true;
 
+    # Enable gnome keyring
+    services.gnome.gnome-keyring.enable = true;
+
+    # Enable flatpak
+    services.flatpak.enable = true;
+
     # Developer manpages
     documentation.dev.enable = true;
 
@@ -50,6 +56,25 @@ TBA
         man-pages
         man-pages-posix
     ];
+
+    # Autologin
+    services.greetd = let
+        tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
+        session = "${pkgs.sway}/bin/sway";
+        username = "zap";
+    in {
+        enable = true;
+        settings = {
+            initial_session = {
+                command = "${session}";
+                user = "${username}";
+            };
+            default_session = {
+                command = "${tuigreet} --greeting 'Welcome to NixOS!' --asterisks --remember --remember-user-session --time -cmd ${session}";
+                user = "greeter";
+            };
+        };
+    };
 }
 ```
 
