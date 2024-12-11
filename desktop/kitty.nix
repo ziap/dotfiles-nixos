@@ -50,7 +50,8 @@
       color14                 = "#${theme.bright6}";
       color15                 = "#${theme.bright7}";
 
-      cursor                  = "none";
+      cursor                  = "#${theme.bright0}";
+      cursor_text_color       = "background";
       cursor_trail            = 3;
       cursor_trail_decay      = "0.1 0.3";
     };
