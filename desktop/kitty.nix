@@ -20,7 +20,6 @@
 
       shell                   = "fish";
 
-      cursor                  = "none";
       url_color               = "#${theme.bright4}";
       visual_bell_color       = "#${theme.bright6}";
       bell_border_color       = "#${theme.bright6}";
@@ -50,6 +49,9 @@
       color13                 = "#${theme.bright5}";
       color14                 = "#${theme.bright6}";
       color15                 = "#${theme.bright7}";
+
+      cursor                  = "none";
+      cursor_trail            = 1;
     };
   };
 }
