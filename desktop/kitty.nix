@@ -6,20 +6,25 @@
     settings = let
       theme = import ../themes/current-theme.nix;
     in {
-      font_family             = "FiraCode Nerd Font";
-      bold_font               = "family='FiraCode Nerd Font', style='Bold'";
-      italic_font             = "family='VictorMono Nerd Font' style='SemiBold Italic'";
-      bold_italic_font        = "family='VictorMono Nerd Font' style='Bold Italic'";
-      font_size               = 14;
-      disable_ligatures       = "never";
+      # Font configuration
+      font_family       = "FiraCode Nerd Font";
+      bold_font         = "family='FiraCode Nerd Font', style='Bold'";
+      italic_font       = "family='VictorMono Nerd Font' style='SemiBold Italic'";
+      bold_italic_font  = "family='VictorMono Nerd Font' style='Bold Italic'";
+      font_size         = 14;
+      disable_ligatures = "never";
+
+      # Windowing
       remember_window_size    = "no";
       initial_window_width    = "100c";
       initial_window_height   = "36c";
       confirm_os_window_close = 0;
-      input_delay             = 0;
 
-      shell                   = "fish";
+      # Other configuration
+      input_delay = 0;
+      shell       = "fish";
 
+      # Theming
       url_color               = "#${theme.bright4}";
       visual_bell_color       = "#${theme.bright6}";
       bell_border_color       = "#${theme.bright6}";
@@ -50,10 +55,12 @@
       color14                 = "#${theme.bright6}";
       color15                 = "#${theme.bright7}";
 
-      cursor                  = "#${theme.bright0}";
-      cursor_text_color       = "background";
-      cursor_trail            = 3;
-      cursor_trail_decay      = "0.1 0.3";
+      # Cursor configuration
+      cursor                       = "#${theme.bright0}";
+      cursor_text_color            = "background";
+      cursor_trail                 = 3;
+      cursor_trail_decay           = "0.1 0.3";
+      cursor_trail_start_threshold = 1;
     };
   };
 }

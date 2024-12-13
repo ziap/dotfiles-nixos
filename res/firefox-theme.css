@@ -29,6 +29,10 @@
   }
 }
 
+#tab-notification-deck {
+  width: 100%;
+}
+
 /* Remove navigation bar color */
 #nav-bar {
   background: none !important;
