@@ -18,11 +18,8 @@ in {
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     vim
-    git
-
-    man-pages
-    man-pages-posix
-
+    git zip busybox
+    man-pages man-pages-posix
     wineWowPackages.stable
   ];
 

@@ -10,17 +10,16 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, ... }:
-    let
-      pkgs = nixpkgs.legacyPackages.x86_64-linux;
-    in {
-      # Set home manager as the default package so that we can `nix run .`
-      defaultPackage = home-manager.defaultPackage;
+  outputs = { nixpkgs, home-manager, ... }: let
+    pkgs = nixpkgs.legacyPackages.x86_64-linux;
+  in {
+    # Set home manager as the default package so that we can `nix run .`
+    defaultPackage = home-manager.defaultPackage;
 
-      # Home manager configuration modules
-      homeConfigurations."zap" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [ ./home.nix ];
-      };
+    # Home manager configuration modules
+    homeConfigurations."zap" = home-manager.lib.homeManagerConfiguration {
+      inherit pkgs;
+      modules = [ ./home.nix ];
     };
+  };
 }
