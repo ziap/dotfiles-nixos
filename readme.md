@@ -67,7 +67,7 @@ TBA
     settings = {
       initial_session = {
         command = session;
-        user = "${username}";
+        user = "<your username>";
       };
       default_session = {
         command = "${tuigreet} --greeting 'Welcome to NixOS!' --asterisks --remember --remember-user-session --time -cmd ${session}";
