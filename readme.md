@@ -116,5 +116,5 @@ Change the username home directory in `home.nix`
 Activate home-manager
 
 ```bash
-home-manager switch --flake .
+nix run . -- switch --flake .
 ```
