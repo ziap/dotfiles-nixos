@@ -74,7 +74,6 @@
         workspaces = ["1" "2" "3" "4" "5" "6" "7" "8" "9" "10"];
         resizeFactor = "40px";
 
-        light = "light";
         pactl = "${pkgs.pulseaudio}/bin/pactl";
         playerctl = "${pkgs.playerctl}/bin/playerctl";
       in {
@@ -109,8 +108,8 @@
         "${mod}+Shift+minus" = "move scratchpad";
         "${mod}+minus" = "scratchpad show";
 
-        "--locked XF86MonBrightnessUp" = "exec ${light} -A 5";
-        "--locked XF86MonBrightnessDown" = "exec ${light} -U 5";
+        "--locked XF86MonBrightnessUp" = "exec light -A 5";
+        "--locked XF86MonBrightnessDown" = "exec light -U 5";
       
         "--locked XF86AudioRaiseVolume" = "exec ${pactl} set-sink-volume @DEFAULT_SINK@ +5%";
         "--locked XF86AudioLowerVolume" = "exec ${pactl} set-sink-volume @DEFAULT_SINK@ -5%";

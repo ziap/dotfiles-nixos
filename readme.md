@@ -22,74 +22,6 @@ My custom environment ported to NixOS and managed with home-manager
 
 TBA
 
-## Recommended settings in configuration.nix
-
-```nix
-{
-  # Enable flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  # Enable sway
-  programs.sway = {
-    enable = true;
-    wrapperFeatures.gtk = true;
-    extraPackages = [];
-  };
-
-  # Enable light
-  # NOTE: Add "video" to your users extraGroups
-  programs.light.enable = true;
-
-  # Enable gnome keyring
-  services.gnome.gnome-keyring.enable = true;
-
-  # Enable flatpak
-  services.flatpak.enable = true;
-
-  # Developer manpages
-  documentation.dev.enable = true;
-
-  environment.systemPackages = with pkgs; [
-    wget
-    git
-    vim
-    home-manager
-    man-pages
-    man-pages-posix
-  ];
-
-  # Autologin <https://discourse.nixos.org/t/autologin-hyprland/38159/12>
-  services.greetd = let 
-    tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
-    session = "${pkgs.sway}/bin/sway";
-  in {
-    enable = true;
-    settings = {
-      initial_session = {
-        command = session;
-        user = "<your username>";
-      };
-      default_session = {
-        command = "${tuigreet} --greeting 'Welcome to NixOS!' --asterisks --remember --remember-user-session --time -cmd ${session}";
-        user = "greeter";
-      };
-    };
-  };
-
-  # Pipewire <https://nixos.wiki/wiki/PipeWire>
-  # rtkit is optional but recommended
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-  };
-}
-```
-
 ## Installation
 
 Clone the repository
@@ -99,9 +31,10 @@ git clone https://github.com/ziap/dotfiles-nixos dotfiles
 cd dotfiles
 ```
 
-Change the username home directory in `home.nix` 
+Change the username home directory in `home.nix` and `user.nix`
 
 ```nix
+# home.nix
 {
   home = let 
     username = "<your username>";
@@ -111,10 +44,36 @@ Change the username home directory in `home.nix`
     # ...
   };
 }
+
+# user.nix
+let
+  username = "<your username>";
+in {
+  # ...
+}
 ```
 
-Activate home-manager
+Include `user.nix` in your `configuration.nix`
+
+```nix
+# Configuration.nix
+{
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ./user.nix
+  ];
+
+  # ...
+}
+```
+
+Install and activate home-manager
 
 ```bash
 nix run . -- switch --flake .
 ```
+
+# License
+
+This project is licensed under the [GPL-3.0 license](LICENSE).
