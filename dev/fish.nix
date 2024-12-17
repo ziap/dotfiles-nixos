@@ -31,7 +31,8 @@
       lla = "ls -la";
       cdtemp = "cd (mktemp -d)";
       nv = "nvim";
-      nix-shell = "nix-shell --run fish";
+      nsh = "nix-shell --run fish";
+      dev = "nix develop --command fish";
     };
 
     interactiveShellInit = ''
