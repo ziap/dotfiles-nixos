@@ -9,6 +9,7 @@
     ./imv.nix
   ];
 
+  # GNOME related configurations
   dconf = {
     enable = true;
 
@@ -30,11 +31,5 @@
       name = "ePapirus";
       package = pkgs.epapirus-icon-theme;
     };
-  };
-
-  xdg.portal = {
-    enable = true;
-    extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
-    configPackages = with pkgs; [ xdg-desktop-portal-gtk ];
   };
 }

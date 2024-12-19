@@ -23,16 +23,6 @@
           install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
           installation_mode = "force_installed";
         };
-        /*
-        "FirefoxColor@mozilla.com" = {
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/firefox-color/latest.xpi";
-          installation_mode = "force_installed";
-        };
-        "{7a7a4a92-a2a0-41d1-9fd7-1e92480d612d}" = {
-          install_url = "https://addons.mozilla.org/firefox/downloads/latest/styl-us/latest.xpi";
-          installation_mode = "force_installed";
-        };
-        */
       };
     };
 
@@ -80,7 +70,15 @@
           # Enable DNS over HTTPS
           "network.trr.mode" = 2;
 
+          # Disable system geolocation
+          "geo.provider.ms-windows-location" = false; # [WINDOWS]
+          "geo.provider.use_corelocation" = false; # [MAC]
+          "geo.provider.use_geoclue" = false; # [FF102+] [LINUX]
+
           # Disable telemetry
+          "datareporting.policy.dataSubmissionEnabled" = false;
+          "datareporting.healthreport.uploadEnabled" = false;
+
           "toolkit.telemetry.unified" = false;
           "toolkit.telemetry.enabled" = false;
           "toolkit.telemetry.server" = "data:,";
@@ -93,9 +91,11 @@
           "toolkit.telemetry.coverage.opt-out" = true;
           "toolkit.coverage.opt-out" = true;
           "toolkit.coverage.endpoint.base" = "";
+
           "browser.ping-centre.telemetry" = false;
           "browser.newtabpage.activity-stream.feeds.telemetry" = false;
           "browser.newtabpage.activity-stream.telemetry" = false;
+
           "app.shield.optoutstudies.enabled" = false;
           "app.normandy.enabled" = false;
           "app.normandy.api_url" = "";
@@ -118,6 +118,7 @@
           # Disable some search suggestion
           "browser.urlbar.suggest.bookmark" = false;
           "browser.urlbar.suggest.topsites" = false;
+          "browser.urlbar.suggest.searches" = false;
           "browser.urlbar.speculativeConnect.enabled" = false;
           "browser.urlbar.suggest.quicksuggest.nonsponsored" = false; # [FF95+]
           "browser.urlbar.suggest.quicksuggest.sponsored" = false;
