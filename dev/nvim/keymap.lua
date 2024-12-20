@@ -22,17 +22,18 @@ nmap('<leader>n', vim.diagnostic.goto_next, true)
 nmap('<leader>N', vim.diagnostic.goto_prev, true)
 nmap('<leader>k', vim.lsp.buf.hover)
 nmap('<leader>r', vim.lsp.buf.rename)
-nmap('<leader>c', vim.lsp.buf.code_action)
+nmap('<leader>ca', vim.lsp.buf.code_action)
 
 nmap('gd', vim.lsp.buf.definition)
 nmap('gi', vim.lsp.buf.implementation)
 nmap('gr', vim.lsp.buf.references)
 
--- Telescope keybinds
-nmap('<leader>f', ':Telescope find_files<cr>')
-nmap('<leader>g', ':Telescope live_grep<cr>')
-nmap('<leader>b', ':Telescope buffers<cr>')
-nmap('<leader>h', ':Telescope help_tags<cr>')
+local telescope = require'telescope.builtin'
+
+nmap('<leader>f', telescope.find_files)
+nmap('<leader>g', telescope.live_grep)
+nmap('<leader>b', telescope.buffers)
+nmap('<leader>h', telescope.help_tags)
 
 -- Move around split windows with less keystrokes
 nmap('<c-h>', ':wincmd h<cr>', true)
@@ -110,3 +111,7 @@ nmap('<leader>m', function()
   vim.opt.makeprg = last_makeprg
   make_cmd = cmd
 end)
+
+-- Close quickfix and location list
+nmap('<leader>cc', ':cclose<cr>', true)
+nmap('<leader>lc', ':lclose<cr>', true)

@@ -3,12 +3,13 @@
 {
   programs.neovim = let
     to_lua = str: "lua << EOF\n${str}\nEOF\n";
-    to_lua_file = filename: "lua << EOF\n${builtins.readFile filename}\nEOF\n";
+    to_lua_file = filename: to_lua (builtins.readFile filename);
     theme = import ../../themes/current-theme.nix;
   in {
     enable = true;
     defaultEditor = true;
     plugins = with pkgs.vimPlugins; [
+      nvim-web-devicons
       {
         plugin = pkgs.vimPlugins.${theme.nvim.plugin};
         config = ''
@@ -20,14 +21,12 @@
         plugin = lualine-nvim;
         config = to_lua_file ./plugins/lualine.lua;
       }
-      {
-        plugin = nvim-ts-autotag;
-        config = to_lua "require'nvim-ts-autotag'.setup {}";
-      }
+
       {
         plugin = telescope-nvim;
         config = to_lua "require'telescope'.setup {}";
       }
+
       {
         plugin = (nvim-treesitter.withPlugins (p: [
           p.tree-sitter-python
@@ -52,6 +51,7 @@
         ]));
         config = to_lua_file ./plugins/treesitter.lua;
       }
+
       {
         plugin = nvim-lspconfig;
         config = to_lua_file ./plugins/lsp.lua;
@@ -66,9 +66,14 @@
         plugin = nvim-cmp;
         config = to_lua_file ./plugins/cmp.lua;
       }
+
       {
         plugin = nvim-autopairs;
         config = to_lua "require'nvim-autopairs'.setup {}";
+      }
+      {
+        plugin = nvim-ts-autotag;
+        config = to_lua "require'nvim-ts-autotag'.setup {}";
       }
     ];
 
