@@ -3,9 +3,28 @@
 {
   programs.kitty = {
     enable = true;
+    keybindings = let
+      mod = "ctrl+shift";
+    in {
+      "${mod}+n" = "new_os_window_with_cwd";
+      "${mod}+f" = "toggle_fullscreen";
+
+      "${mod}+enter" = "new_window_with_cwd";
+      "${mod}+m"     = "move_window_to_top";
+      "${mod}+j"     = "next_window";
+      "${mod}+k"     = "previous_window";
+
+      "${mod}+t" = "new_tab_with_cwd";
+      "${mod}+l" = "next_tab";
+      "${mod}+h" = "previous_tab";
+      "${mod}+q" = "close_tab";
+    };
     settings = let
       theme = import ../themes/current-theme.nix;
     in {
+      # Clear keybindings
+      clear_all_shortcuts = "yes";
+
       # Font configuration
       font_family       = "FiraCode Nerd Font";
       bold_font         = "family='FiraCode Nerd Font', style='Bold'";
@@ -18,11 +37,12 @@
       remember_window_size    = "no";
       initial_window_width    = "100c";
       initial_window_height   = "36c";
-      confirm_os_window_close = 0;
+      confirm_os_window_close = 2;
 
       # Other configuration
-      input_delay = 0;
-      shell       = "fish";
+      input_delay     = 0;
+      shell           = "fish";
+      enabled_layouts = "tall:bias=56;full_size=1;mirrored=false";
 
       # Theming
       url_color               = "#${theme.bright4}";
@@ -54,6 +74,10 @@
       color13                 = "#${theme.bright5}";
       color14                 = "#${theme.bright6}";
       color15                 = "#${theme.bright7}";
+
+      # Tab bar
+      tab_bar_edge  = "top";
+      tab_bar_style = "powerline";
 
       # Cursor configuration
       cursor                       = "#${theme.bright0}";
