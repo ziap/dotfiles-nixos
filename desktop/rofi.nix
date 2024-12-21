@@ -4,16 +4,62 @@
   programs.rofi = {
     enable = true;
     package = pkgs.rofi-wayland;
-    extraConfig = {
-      modi = "drun,run,ssh,filebrowser,powermenu:${config.xdg.configHome}/generated/powermenu.lua";
+    extraConfig = let
+      kitty = "${pkgs.kitty}/bin/kitty";
+
+      powermenu = pkgs.writeScript "powermenu.lua" ''
+        #!${pkgs.luajit}/bin/luajit
+
+        -- Use a list because table keys are randomly sorted
+        -- It's also easier to add options or edit them this way
+        local options = {
+          {
+            name = "Sleep",
+            icon = "system-suspend",
+            command = "systemctl suspend"
+          },
+          {
+            name = "Shut down",
+            icon = "system-shutdown",
+            command = "systemctl poweroff"
+          },
+          {
+            name = "Restart",
+            icon = "system-reboot",
+            command = "systemctl reboot"
+          },
+          {
+            name = "Lock",
+            icon = "system-lock-screen",
+            command = "swaylock"
+          },
+          {
+            name = "Log out",
+            icon = "system-log-out",
+            command = "swaymsg exit"
+          }
+        }
+
+        for i, opt in ipairs(options) do
+          if arg[1] then
+            if opt.name == arg[1] then
+              os.execute(opt.command)
+            end
+          else
+            print(opt.name..'\0icon\x1f'..opt.icon)
+          end
+        end
+      '';
+    in {
+      modi = "drun,run,ssh,filebrowser,powermenu:${powermenu}";
       
       me-accept-entry = "MousePrimary";
       me-select-entry = "";
       show-icons = true;
       application-fallback-icon = "run-build";
       
-      terminal = "kitty";
-      ssh-command = "kitty -- kitten ssh {host}";
+      terminal = kitty;
+      ssh-command = "${kitty} -- kitten ssh {host}";
       drun-display-format = " {name} ";
       sidebar-mode = true;
       matching = "fuzzy";
@@ -30,11 +76,7 @@
       sort = true;
       sorting-method = "fzf";
     };
-    theme = "${config.xdg.configHome}/generated/rofi-theme.rasi";
-  };
-
-  home.file = {
-    "${config.xdg.configHome}/generated/rofi-theme.rasi".text = let
+    theme = toString (pkgs.writeText "rofi-theme.rasi" (let
       theme = import ../themes/current-theme.nix;
     in ''
       * {
@@ -67,7 +109,6 @@
         str: "";
         expand: false;
       }
-      
       
       entry {
         placeholder: "Search";
@@ -147,52 +188,6 @@
         text-color: @bg;
         background-color: @fg;
       }
-    '';
-    "${config.xdg.configHome}/generated/powermenu.lua" = {
-      text = ''
-        #!${pkgs.luajit}/bin/luajit
-        
-        -- Use a list because table keys are randomly sorted
-        -- It's also easier to add options or edit them this way
-        local options = {
-          {
-            name = "Sleep",
-            icon = "system-suspend",
-            command = "systemctl suspend"
-          },
-          {
-            name = "Shut down",
-            icon = "system-shutdown",
-            command = "systemctl poweroff"
-          },
-          {
-            name = "Restart",
-            icon = "system-reboot",
-            command = "systemctl reboot"
-          },
-          {
-            name = "Lock",
-            icon = "system-lock-screen",
-            command = "swaylock"
-          },
-          {
-            name = "Log out",
-            icon = "system-log-out",
-            command = "swaymsg exit"
-          }
-        }
-        
-        for i, opt in ipairs(options) do
-          if arg[1] then
-            if opt.name == arg[1] then
-              os.execute(opt.command)
-            end
-          else
-            print(opt.name..'\0icon\x1f'..opt.icon)
-          end
-        end
-      '';
-      executable = true;
-    };
+    ''));
   };
 }

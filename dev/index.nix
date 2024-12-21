@@ -13,7 +13,7 @@
   ];
 
   home.sessionVariables = {
-    MANPAGER = "nvim +Man!";
+    MANPAGER = "${pkgs.neovim}/bin/nvim +Man!";
   };
 
   home.packages = with pkgs; [

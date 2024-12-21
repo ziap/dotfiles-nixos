@@ -7,12 +7,6 @@
     username = username;
     homeDirectory = "/home/${username}";
     stateVersion = "24.11";
-    file = {
-      "${config.xdg.configHome}/res" = {
-        source = ./res;
-        recursive = true;
-      };
-    };
   };
 
   imports = [

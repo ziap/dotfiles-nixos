@@ -7,7 +7,6 @@
       mod = "ctrl+shift";
     in {
       "${mod}+n" = "new_os_window_with_cwd";
-      "${mod}+f" = "toggle_fullscreen";
 
       "${mod}+enter" = "new_window_with_cwd";
       "${mod}+m"     = "move_window_to_top";
@@ -22,7 +21,7 @@
       "${mod}+c" = "copy_to_clipboard";
       "${mod}+v" = "paste_from_clipboard";
 
-      "${mod}+x" = "next_layout";
+      "${mod}+f" = "next_layout";
     };
     settings = let
       theme = import ../themes/current-theme.nix;
@@ -47,7 +46,7 @@
       # Other configuration
       input_delay     = 0;
       shell           = "fish";
-      enabled_layouts = "tall:bias=56,fat:bias=75";
+      enabled_layouts = "tall:bias=56,fat:bias=72";
 
       # Theming
       url_color               = "#${theme.bright4}";

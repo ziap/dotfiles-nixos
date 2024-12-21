@@ -1,8 +1,26 @@
 { config, pkgs, ... }:
 
 {
-  wayland.windowManager.sway = {
+  wayland.windowManager.sway = let
+    grim = "${pkgs.grim}/bin/grim";
+    slurp = "${pkgs.slurp}/bin/slurp";
+    wl-copy = "${pkgs.wl-clipboard}/bin/wl-copy";
+    jq = "${pkgs.jq}/bin/jq";
+
+    screenshot = pkgs.writeShellScript "screenshot.sh" ''
+      case $1 in
+        screen) ${grim} - | ${wl-copy};;
+        region) ${grim} -g "$(${slurp})" - | ${wl-copy};;
+        window) ${grim} -g "$(
+          $swaymsg -t get_tree \
+            | ${jq} -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' \
+            | ${slurp}
+        )" - | ${wl-copy};;
+      esac
+    '';
+  in {
     enable = true;
+    package = null;
     extraOptions = ["--unsupported-gpu"];
     config = let
       screenshotMode = "Screenshot: [s]creen [w]window [r]egion";
@@ -10,7 +28,7 @@
       theme = import ../themes/current-theme.nix;
     in {
       output."*" = {
-        "bg" = "${config.xdg.configHome}/res/wall-${theme.name}.png fill";
+        "bg" = "${../res/wall-${theme.name}.png} fill";
       };
       gaps = {
         "inner" = 6;
@@ -58,13 +76,17 @@
         "urgent" = mkColor "#${theme.regular1}" "#${theme.foreground}";
       };
       keybindings = let
-        term = "kitty";
-        menu = "rofi -show drun | swaymsg";
-        file = "rofi -show filebrowser | swaymsg";
-        power = "rofi -show powermenu | swaymsg";
-        lock = "swaylock";
-        browser = "firefox";
-        privateBrowser = "firefox --private-window";
+        term = "${pkgs.kitty}/bin/kitty";
+
+        rofi = "${pkgs.rofi-wayland}/bin/rofi";
+        menu = "${rofi} -show drun | swaymsg";
+        file = "${rofi} -show filebrowser | swaymsg";
+        power = "${rofi} -show powermenu | swaymsg";
+
+        lock = "${pkgs.swaylock}/bin/swaylock";
+
+        browser = "${config.programs.firefox.finalPackage}/bin/firefox";
+        privateBrowser = "${browser} --private-window";
 
         left = "h";
         right = "l";
@@ -136,9 +158,7 @@
       }) workspaces);
 
       modes = {
-        "${screenshotMode}" = let
-          screenshot = "${config.xdg.configHome}/generated/screenshot.sh";
-        in {
+        "${screenshotMode}" = {
           "--to-code s" = "mode \"default\", exec ${screenshot} screen";
           "--to-code w" = "mode \"default\", exec ${screenshot} window";
           "--to-code r" = "mode \"default\", exec ${screenshot} region";
@@ -157,28 +177,4 @@
   };
 
   services.playerctld.enable = true;
-
-  home.file = {
-    "${config.xdg.configHome}/generated/screenshot.sh" = {
-      text = let
-        grim = "${pkgs.grim}/bin/grim";
-        slurp = "${pkgs.slurp}/bin/slurp";
-        wl-copy = "${pkgs.wl-clipboard}/bin/wl-copy";
-        jq = "${pkgs.jq}/bin/jq";
-      in ''
-        #!/bin/sh
-
-        case $1 in
-          screen) ${grim} - | ${wl-copy};;
-          region) ${grim} -g "$(${slurp})" - | ${wl-copy};;
-          window) ${grim} -g "$(
-            $swaymsg -t get_tree \
-              | ${jq} -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' \
-              | ${slurp}
-          )" - | ${wl-copy};;
-        esac
-      '';
-      executable = true;
-    };
-  };
 }
