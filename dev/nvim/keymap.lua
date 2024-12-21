@@ -105,8 +105,10 @@ nmap('<leader>m', function()
   local cmd = vim.fn.input('Build command: ', make_cmd)
   local last_makeprg = vim.opt.makeprg:get()
 
-  vim.opt.makeprg = cmd:match('%S+')
-  vim.cmd((cmd:gsub('%S+', 'make', 1)))
+  local prg, args = cmd:match("(%S+)(.+)")
+
+  vim.opt.makeprg = prg
+  vim.cmd('make'..args)
 
   vim.opt.makeprg = last_makeprg
   make_cmd = cmd
