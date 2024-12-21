@@ -1,24 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  wayland.windowManager.sway = let
-    grim = "${pkgs.grim}/bin/grim";
-    slurp = "${pkgs.slurp}/bin/slurp";
-    wl-copy = "${pkgs.wl-clipboard}/bin/wl-copy";
-    jq = "${pkgs.jq}/bin/jq";
-
-    screenshot = pkgs.writeShellScript "screenshot.sh" ''
-      case $1 in
-        screen) ${grim} - | ${wl-copy};;
-        region) ${grim} -g "$(${slurp})" - | ${wl-copy};;
-        window) ${grim} -g "$(
-          $swaymsg -t get_tree \
-            | ${jq} -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' \
-            | ${slurp}
-        )" - | ${wl-copy};;
-      esac
-    '';
-  in {
+  wayland.windowManager.sway = {
     enable = true;
     package = null;
     extraOptions = ["--unsupported-gpu"];
@@ -158,7 +141,24 @@
       }) workspaces);
 
       modes = {
-        "${screenshotMode}" = {
+        "${screenshotMode}" = let
+          grim = "${pkgs.grim}/bin/grim";
+          slurp = "${pkgs.slurp}/bin/slurp";
+          wl-copy = "${pkgs.wl-clipboard}/bin/wl-copy";
+          jq = "${pkgs.jq}/bin/jq";
+
+          screenshot = pkgs.writeShellScript "screenshot.sh" ''
+            case $1 in
+              screen) ${grim} - | ${wl-copy};;
+              region) ${grim} -g "$(${slurp})" - | ${wl-copy};;
+              window) ${grim} -g "$(
+                $swaymsg -t get_tree \
+                  | ${jq} -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"' \
+                  | ${slurp}
+              )" - | ${wl-copy};;
+            esac
+          '';
+        in {
           "--to-code s" = "mode \"default\", exec ${screenshot} screen";
           "--to-code w" = "mode \"default\", exec ${screenshot} window";
           "--to-code r" = "mode \"default\", exec ${screenshot} region";
