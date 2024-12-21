@@ -16,6 +16,8 @@
       DisableFirefoxAccounts = true;
       DisableAccounts = true;
       OfferToSaveLogins = false;
+      OverrideFirstRunPage = "";
+      OverridePostUpdatePage = "";
       ExtensionSettings = {
         "*".installation_mode = "blocked"; # blocks all addons except the ones specified below
         # uBlock Origin:
@@ -29,7 +31,16 @@
     profiles = {
       default = {
         id = 0;
-        search.default = "DuckDuckGo";
+        search = {
+          default = "DuckDuckGo";
+          force = true;
+          engines = let
+            removed = [ "Bing" "Google" "Amazon.com" "Wikipedia (en)" "eBay" ];
+          in builtins.listToAttrs (map (engine: {
+            name = engine;
+            value = { metaData.hidden = true; };
+          }) removed);
+        };
         userChrome = builtins.readFile ../res/firefox-theme.css;
 
         settings = {
@@ -115,10 +126,11 @@
           # Disable IPv6
           "network.dns.disableIPv6" = true;
 
-          # Disable some search suggestion
+          # Disable some url bar suggestion
           "browser.urlbar.suggest.bookmark" = false;
           "browser.urlbar.suggest.topsites" = false;
-          "browser.urlbar.suggest.searches" = false;
+          "browser.urlbar.suggest.engines" = false;
+          "browser.urlbar.suggest.searches" = true; # Still enable search suggestion
           "browser.urlbar.speculativeConnect.enabled" = false;
           "browser.urlbar.suggest.quicksuggest.nonsponsored" = false; # [FF95+]
           "browser.urlbar.suggest.quicksuggest.sponsored" = false;

@@ -18,6 +18,11 @@
       "${mod}+l" = "next_tab";
       "${mod}+h" = "previous_tab";
       "${mod}+q" = "close_tab";
+
+      "${mod}+c" = "copy_to_clipboard";
+      "${mod}+v" = "paste_from_clipboard";
+
+      "${mod}+x" = "next_layout";
     };
     settings = let
       theme = import ../themes/current-theme.nix;
@@ -42,7 +47,7 @@
       # Other configuration
       input_delay     = 0;
       shell           = "fish";
-      enabled_layouts = "tall:bias=56;full_size=1;mirrored=false";
+      enabled_layouts = "tall:bias=56,fat:bias=75";
 
       # Theming
       url_color               = "#${theme.bright4}";
