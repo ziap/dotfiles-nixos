@@ -16,6 +16,7 @@
       enable = true;
       strategy = [ 
         "completion"
+        "history"
       ];
     };
     syntaxHighlighting.enable = true;
@@ -35,6 +36,8 @@
         esac
       }
       zle -N zle-keymap-select
+
+      mkcd() { mkdir "$1" && cd "$1" }
       
       zle-line-init() {
         zle -K viins
@@ -48,21 +51,21 @@
       ## Emacs binding in insert mode
       bindkey -M main '^P' up-line-or-history
       bindkey -M main '^N' down-line-or-history
-      bindkey -M main '^F' forward-char
-      bindkey -M main '^B' backward-char
 
-      ## Fuzzy finder utilities
-      function frm { fd --type=file | sk -m --preview 'file {}' | xargs -d '\n' rm }
-      function fcd { cd "$(fd --type=d | sk --preview 'eza {} --icons -la')" }
-      function fgd { cd $(dirname $(fd -H -g \*.git ~/*/) | sk --preview 'eza {} --git-ignore --icons -T') }
-      function fca { bat "$(fd --type=file | sk --preview='bat {} --color=always')" }
-      function fxo { xdg-open "$(fd --type=file | sk --preview 'file {}')" }
-      function frg { sk --ansi -ic "rg {} --color=always --line-number" }
+      ## Command buffer editing
+      autoload -Uz edit-command-line
+      zle -N edit-command-line
+      bindkey -M main '^F' edit-command-line
+
+      ## Selection menu navigation
+      bindkey -M menuselect '^B' backward-char
+      bindkey -M menuselect '^F' forward-char
+
+      ## Accept autosuggestion
+      bindkey -M main '^ ' autosuggest-accept
     '';
-    shellAliases = {
-      ls = "eza --git --icons";
-      cat = "bat";
-      nv = "nvim";
+    shellAliases = import ./shell-aliases.nix "zsh" // {
+      cdtemp = "cd `mktemp -d`";
     };
     history = {
       size = 10000;

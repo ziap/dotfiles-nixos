@@ -18,7 +18,7 @@ in {
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     vim
-    git zip wget file
+    git zip unzip wget file
     man-pages man-pages-posix
     wineWowPackages.stable
   ];

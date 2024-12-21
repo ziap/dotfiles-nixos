@@ -6,6 +6,7 @@
     ./nvim/index.nix
     ./fish.nix
     ./zsh.nix
+    ./nushell.nix
     ./bat.nix
     ./git.nix
     ./starship.nix
@@ -16,10 +17,10 @@
   };
 
   home.packages = with pkgs; [
-    tokei
-    htop
+    eza fd ripgrep skim
+    tokei htop
 
     clang
-    # Everything else can be installed in nix-shells
+    # Everything else can be installed in development shells
   ];
 }

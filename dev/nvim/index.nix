@@ -10,6 +10,7 @@
     defaultEditor = true;
     plugins = with pkgs.vimPlugins; [
       nvim-web-devicons
+
       {
         plugin = pkgs.vimPlugins.${theme.nvim.plugin};
         config = ''
@@ -17,6 +18,7 @@
           set background=dark
         '';
       }
+
       {
         plugin = lualine-nvim;
         config = to_lua_file ./plugins/lualine.lua;
@@ -45,6 +47,7 @@
           p.tree-sitter-jsdoc
           p.tree-sitter-glsl
           p.tree-sitter-nix
+          p.tree-sitter-nu
           p.tree-sitter-toml
           p.tree-sitter-json
           p.tree-sitter-jsonc
@@ -52,10 +55,6 @@
         config = to_lua_file ./plugins/treesitter.lua;
       }
 
-      {
-        plugin = nvim-lspconfig;
-        config = to_lua_file ./plugins/lsp.lua;
-      }
       cmp-nvim-lsp
       vim-vsnip
       vim-vsnip-integ
@@ -68,9 +67,15 @@
       }
 
       {
+        plugin = nvim-lspconfig;
+        config = to_lua_file ./plugins/lsp.lua;
+      }
+
+      {
         plugin = nvim-autopairs;
         config = to_lua "require'nvim-autopairs'.setup {}";
       }
+
       {
         plugin = nvim-ts-autotag;
         config = to_lua "require'nvim-ts-autotag'.setup {}";
@@ -86,6 +91,8 @@
       nodePackages.typescript-language-server
       emmet-ls
       clang-tools
+
+      # Pyright and rust analyzer can be install with development shells
     ];
 
     extraLuaConfig = ''

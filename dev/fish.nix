@@ -1,10 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  home.packages = with pkgs; [
-    eza fd ripgrep skim
-  ];
-
   programs.fish = {
     enable = true;
 
@@ -23,16 +19,8 @@
       '';
     };
 
-    shellAliases = {
-      cat = "bat";
-      ls = "eza --git --icons";
-      ll = "ls -l";
-      la = "ls -a";
-      lla = "ls -la";
+    shellAliases = import ./shell-aliases.nix "fish" // {
       cdtemp = "cd (mktemp -d)";
-      nv = "nvim";
-      nsh = "nix-shell --run fish";
-      dev = "nix develop --command fish";
     };
 
     interactiveShellInit = ''

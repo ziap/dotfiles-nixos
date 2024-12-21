@@ -6,7 +6,8 @@ local servers = {
   'cssls',
   'ts_ls',
   'emmet_ls',
-  'rust_analyzer'
+  'rust_analyzer',
+  'nushell'
 }
 
 for i, name in ipairs(servers) do
