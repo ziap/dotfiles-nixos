@@ -9,29 +9,30 @@ cmp.setup({
   mapping = cmp.mapping.preset.insert({
     ['<c-b>'] = cmp.mapping.scroll_docs(-4),
     ['<c-f>'] = cmp.mapping.scroll_docs(4),
-    ['<c-space>'] = cmp.mapping.confirm({ select = true }),
-    ['<c-e>'] = cmp.mapping.abort()
+    ['<c-space>'] = cmp.mapping.confirm { select = true },
+    ['<c-e>'] = cmp.mapping.abort(),
   }),
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
-    { name = 'vsnip' }
+    { name = 'vsnip' },
   }, {
-    { name = 'buffer' }
-  })
+    { name = 'buffer' },
+    { name = 'path' },
+  }),
 })
 
 cmp.setup.cmdline({'/', '?'}, {
   mapping = cmp.mapping.preset.cmdline(),
   sources = {
-    { name = 'buffer' }
-  }
+    { name = 'buffer' },
+  },
 })
 
 cmp.setup.cmdline(':', {
   mapping = cmp.mapping.preset.cmdline(),
-  sources = cmp.config.sources({
-    { name = 'path' }
-  }, {
-    { name = 'cmdline' }
-  })
+  sources = cmp.config.sources {
+    { name = 'cmdline' },
+    { name = 'cmdline_history' },
+    { name = 'path' },
+  },
 })

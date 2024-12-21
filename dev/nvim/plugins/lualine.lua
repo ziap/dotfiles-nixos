@@ -5,8 +5,8 @@ local filename = {
     modified = '[+]',
     readonly = '[]',
     unnamed = '[No Name]',
-    newfile = '[New]'
-  }
+    newfile = '[New]',
+  },
 }
 
 local function location()
@@ -32,11 +32,11 @@ require'lualine'.setup {
   options = {
     component_separators = {
       left = '\u{E0B9}',
-      right = '\u{E0B7}'
+      right = '\u{E0B7}',
     },
     section_separators = {
       left = '\u{E0B8}',
-      right = '\u{E0B6}'
+      right = '\u{E0B6}',
     },
   },
   sections = {
@@ -45,7 +45,7 @@ require'lualine'.setup {
     lualine_c = { filename },
     lualine_x = { 'encoding', 'fileformat', md_wordcount },
     lualine_y = { 'filetype' },
-    lualine_z = { location }
+    lualine_z = { location },
   },
   inactive_sections = {
     lualine_a = {},
@@ -53,6 +53,6 @@ require'lualine'.setup {
     lualine_c = { filename },
     lualine_x = { 'filetype' },
     lualine_y = { location },
-    lualine_z = {}
-  }
+    lualine_z = {},
+  },
 }

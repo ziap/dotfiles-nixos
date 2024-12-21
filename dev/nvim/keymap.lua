@@ -3,16 +3,16 @@ local function bind(mode)
   return function(lhs, rhs, silent)
     local options = {
       noremap = true,
-      silent = silent or false
+      silent = silent or false,
     }
     vim.keymap.set(mode, lhs, rhs, options)
   end
 end
 
-local nmap = bind('n') -- nnoremap
-local imap = bind('i') -- inoremap
-local vmap = bind('v') -- vnoremap
-local tmap = bind('t') -- tnoremap
+local nmap = bind'n' -- nnoremap
+local imap = bind'i' -- inoremap
+local vmap = bind'v' -- vnoremap
+local tmap = bind't' -- tnoremap
 
 -- Set leader key
 vim.g.mapleader = ' '
@@ -100,12 +100,16 @@ nmap('<c-r>', function()
 end, true)
 
 -- Build project with a command
-local make_cmd = 'make'
+local make_cmd = vim.opt.makeprg:get()
 nmap('<leader>m', function()
   local cmd = vim.fn.input('Build command: ', make_cmd)
-  local last_makeprg = vim.opt.makeprg:get()
 
-  local prg, args = cmd:match("(%S+)(.+)")
+  local last_makeprg = vim.opt.makeprg:get()
+  local prg, args = cmd:match('%s*(%S+)(.*)')
+
+  if prg == '' or prg == nil then
+    return
+  end
 
   vim.opt.makeprg = prg
   vim.cmd('make'..args)
