@@ -149,11 +149,7 @@
 
           writer = pkgs.writers.makeScriptWriter {
             interpreter = "${pkgs.dash}/bin/dash";
-            check = (
-              pkgs.writers.writeDash "dashcheck.sh" ''
-                exec ${pkgs.dash}/bin/dash -n "$1"
-              ''
-            );
+            check = "${pkgs.dash}/bin/dash -n";
           };
 
           screenshot = writer "screenshot.sh" /*sh*/ ''

@@ -7,16 +7,13 @@
     extraConfig = let
       kitty = "${pkgs.kitty}/bin/kitty";
       writer = pkgs.writers.makeScriptWriter {
-        interpreter = pkgs.luajit.interpreter;
-        check = (
-          pkgs.writers.writeDash "luacheck.sh" ''
-            exec ${pkgs.luajitPackages.luacheck}/bin/luacheck "$1"
-          ''
-        );
+        interpreter = "${pkgs.luajit}/bin/luajit";
+        check = "${pkgs.luajitPackages.luacheck}/bin/luacheck";
       };
       powermenu = writer "powermenu.lua" /*lua*/ ''
         -- Use a list because table keys are randomly sorted
         -- It's also easier to add options or edit them this way
+
         local options = {
           {
             name = "Sleep",
