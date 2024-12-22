@@ -4,7 +4,7 @@
   programs.zsh = {
     enable = true;
     enableCompletion = true;
-    completionInit = ''
+    completionInit = /*sh*/ ''
       autoload -U compinit
       zstyle ':completion:*' menu select
       zstyle ':completion:*:warnings' format ' %F{red}-- no matches found --%f'
@@ -21,7 +21,7 @@
     };
     syntaxHighlighting.enable = true;
 
-    initExtra = ''
+    initExtra = /*sh*/ ''
       ## Activate vi mode.
       bindkey -v
       

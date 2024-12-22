@@ -4,7 +4,7 @@
   programs.nushell = {
     enable = true;
     configFile = {
-      text = ''
+      text = /*nu*/ ''
         $env.config = {
           show_banner: false,
         }

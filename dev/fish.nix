@@ -5,12 +5,12 @@
     enable = true;
 
     functions = {
-      mkcd = ''
+      mkcd = /*fish*/ ''
         mkdir $argv
         cd $argv
       '';
 
-      forward-or-edit = ''
+      forward-or-edit = /*fish*/ ''
         if commandline -P
           commandline -f forward-char
         else
@@ -23,7 +23,7 @@
       cdtemp = "cd (mktemp -d)";
     };
 
-    interactiveShellInit = ''
+    interactiveShellInit = /*fish*/ ''
       # Disable greeting
       set fish_greeting
 

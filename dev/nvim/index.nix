@@ -44,6 +44,7 @@
           p.tree-sitter-markdown
           p.tree-sitter-markdown-inline
           p.tree-sitter-bash
+          p.tree-sitter-fish
           p.tree-sitter-jsdoc
           p.tree-sitter-glsl
           p.tree-sitter-nix
@@ -51,6 +52,7 @@
           p.tree-sitter-toml
           p.tree-sitter-json
           p.tree-sitter-jsonc
+          p.tree-sitter-rasi
         ]));
         config = to_lua_file ./plugins/treesitter.lua;
       }

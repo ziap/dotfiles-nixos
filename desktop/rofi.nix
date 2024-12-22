@@ -6,10 +6,15 @@
     package = pkgs.rofi-wayland;
     extraConfig = let
       kitty = "${pkgs.kitty}/bin/kitty";
-
-      powermenu = pkgs.writeScript "powermenu.lua" ''
-        #!${pkgs.luajit}/bin/luajit
-
+      writer = pkgs.writers.makeScriptWriter {
+        interpreter = pkgs.luajit.interpreter;
+        check = (
+          pkgs.writers.writeDash "luacheck.sh" ''
+            exec ${pkgs.luajitPackages.luacheck}/bin/luacheck "$1"
+          ''
+        );
+      };
+      powermenu = writer "powermenu.lua" /*lua*/ ''
         -- Use a list because table keys are randomly sorted
         -- It's also easier to add options or edit them this way
         local options = {
@@ -40,7 +45,7 @@
           }
         }
 
-        for i, opt in ipairs(options) do
+        for _, opt in ipairs(options) do
           if arg[1] then
             if opt.name == arg[1] then
               os.execute(opt.command)
@@ -78,7 +83,7 @@
     };
     theme = toString (pkgs.writeText "rofi-theme.rasi" (let
       theme = import ../themes/current-theme.nix;
-    in ''
+    in /*rasi*/ ''
       * {
         accent: #${theme.background1};
         bg: #${theme.background0};

@@ -64,7 +64,7 @@
     ];
     style = let
       theme = import ../themes/current-theme.nix;
-    in ''
+    in /*css*/ ''
       * {
         border: none;
         border-radius: 0;

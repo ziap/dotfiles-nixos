@@ -147,7 +147,16 @@
           wl-copy = "${pkgs.wl-clipboard}/bin/wl-copy";
           jq = "${pkgs.jq}/bin/jq";
 
-          screenshot = pkgs.writeShellScript "screenshot.sh" ''
+          writer = pkgs.writers.makeScriptWriter {
+            interpreter = "${pkgs.dash}/bin/dash";
+            check = (
+              pkgs.writers.writeDash "dashcheck.sh" ''
+                exec ${pkgs.dash}/bin/dash -n "$1"
+              ''
+            );
+          };
+
+          screenshot = writer "screenshot.sh" /*sh*/ ''
             case $1 in
               screen) ${grim} - | ${wl-copy};;
               region) ${grim} -g "$(${slurp})" - | ${wl-copy};;
