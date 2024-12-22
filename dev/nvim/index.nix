@@ -2,7 +2,7 @@
 
 {
   programs.neovim = let
-    to_lua = str: "lua << EOF\n${str}\nEOF\n";
+    to_lua = str: /*vim*/ "lua << EOF\n${str}\nEOF\n";
     to_lua_file = filename: to_lua (builtins.readFile filename);
     theme = import ../../themes/current-theme.nix;
   in {
@@ -13,7 +13,7 @@
 
       {
         plugin = pkgs.vimPlugins.${theme.nvim.plugin};
-        config = ''
+        config = /*vim*/ ''
           colorscheme ${theme.nvim.colorscheme}
           set background=dark
         '';
@@ -26,7 +26,7 @@
 
       {
         plugin = telescope-nvim;
-        config = to_lua "require'telescope'.setup {}";
+        config = to_lua /*lua*/ "require'telescope'.setup {}";
       }
 
       {
@@ -53,12 +53,12 @@
 
       {
         plugin = nvim-autopairs;
-        config = to_lua "require'nvim-autopairs'.setup {}";
+        config = to_lua /*lua*/ "require'nvim-autopairs'.setup {}";
       }
 
       {
         plugin = nvim-ts-autotag;
-        config = to_lua "require'nvim-ts-autotag'.setup {}";
+        config = to_lua /*lua*/ "require'nvim-ts-autotag'.setup {}";
       }
     ];
 
