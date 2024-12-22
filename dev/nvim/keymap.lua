@@ -121,3 +121,19 @@ end)
 -- Close quickfix and location list
 nmap('<leader>cc', ':cclose<cr>', true)
 nmap('<leader>lc', ':lclose<cr>', true)
+
+-- Clear hlsearch when move
+local search_keys = {}
+for _, key in ipairs { "n", "N", "*", "#", "?", "/" } do
+  search_keys[key] = true
+end
+
+vim.on_key(function(char)
+  if vim.fn.mode() == 'n' then
+    local hlsearch = search_keys[vim.fn.keytrans(char)] == true
+
+    if vim.opt.hlsearch:get() ~= hlsearch then
+      vim.opt.hlsearch = hlsearch
+    end
+  end
+end, nil)

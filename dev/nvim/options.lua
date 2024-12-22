@@ -5,17 +5,6 @@ vim.opt.smartcase = true
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
 
--- Clear hlsearch when move
-vim.on_key(function(char)
-  if vim.fn.mode() == 'n' then
-    local hlsearch = string.find('nN*#/?', char, 1, true) ~= nil
-
-    if vim.opt.hlsearch:get() ~= hlsearch then
-      vim.opt.hlsearch = hlsearch
-    end
-  end
-end, nil)
-
 -- Status
 vim.opt.laststatus = 2
 
