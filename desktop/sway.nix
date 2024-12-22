@@ -13,10 +13,22 @@
       output."*" = {
         "bg" = "${../res/wall-${theme.name}.png} fill";
       };
+
+      # Layout
+      window = {
+        "border" = 2;
+        "titlebar" = false; 
+      };
       gaps = {
         "inner" = 6;
         "smartBorders" = "on";
       };
+      floating = {
+        "border" = 2;
+        "titlebar" = false;
+        "modifier" = "${mod}";
+      };
+
       input = {
         "type:touchpad" = {
           "tap" = "enabled";
@@ -25,24 +37,20 @@
           "dwt" = "disabled";
         };
 
+        # Set caps lock to ctrl
         "type:keyboard" = {
           "xkb_options" = "ctrl:nocaps";
         };
 
+        # Disable touchscreen
         "type:touch" = {
           "events" = "disabled";
         };
       };
+
       defaultWorkspace = "workspace number 1";
-      window = {
-        "border" = 2;
-        "titlebar" = false; 
-      };
-      floating = {
-        "border" = 2;
-        "titlebar" = false;
-        "modifier" = "${mod}";
-      };
+
+      # Only use 2 colors to theme everything
       colors = let
         mkColor = bg: fg: {
           background = bg;
@@ -81,6 +89,7 @@
         pactl = "${pkgs.pulseaudio}/bin/pactl";
         playerctl = "${pkgs.playerctl}/bin/playerctl";
       in {
+        # Application launching
         "${mod}+Return" = "exec ${term}";
         "${mod}+Shift+Return" = "exec ${menu}";
         "${mod}+w" = "kill";
@@ -90,6 +99,7 @@
         "${mod}+q" = "exec ${power}";
         "${mod}+z" = "exec ${lock}";
 
+        # Window controls
         "${mod}+${left}" = "focus left";
         "${mod}+${down}" = "focus down";
         "${mod}+${up}" = "focus up";
@@ -105,13 +115,14 @@
         "${mod}+Ctrl+${up}" = "resize shrink height ${resizeFactor}";
         "${mod}+Ctrl+${right}" = "resize grow width ${resizeFactor}";
 
+        # Layout stuffs
         "${mod}+f" = "fullscreen";
         "${mod}+Shift+space" = "floating toggle";
         "${mod}+space" = "focus mode_toggle";
-        "${mod}+a" = "focus parent";
         "${mod}+Shift+minus" = "move scratchpad";
         "${mod}+minus" = "scratchpad show";
 
+        # Mutlimedia keys
         "--locked XF86MonBrightnessUp" = "exec light -A 5";
         "--locked XF86MonBrightnessDown" = "exec light -U 5";
       
@@ -124,12 +135,15 @@
         "--locked XF86AudioNext" = "exec ${playerctl} next";
         "--locked XF86AudioPrev" = "exec ${playerctl} previous";
       
+        # Mutimedia shortcuts
         "${mod}+p" = "exec ${playerctl} play-pause";
         "${mod}+Period" = "exec ${playerctl} next";
         "${mod}+Comma" = "exec ${playerctl} previous";
 
+        # Take screenshot
         "--to-code ${mod}+s" = "mode \"${screenshotMode}\"";
 
+        # Map 0 to workspace 10
         "${mod}+0" = "workspace number 10";
         "${mod}+Shift+0" = "move workspace number 10";
       } // builtins.listToAttrs (let
@@ -148,12 +162,16 @@
       in keybindSwitch ++ keybindMove);
 
       modes = {
+        # Maybe rofi is better in this case, but currently, I use a Sway mode
+        # to take screenshots
         "${screenshotMode}" = let
           grim = "${pkgs.grim}/bin/grim";
           slurp = "${pkgs.slurp}/bin/slurp";
           wl-copy = "${pkgs.wl-clipboard}/bin/wl-copy";
           jq = "${pkgs.jq}/bin/jq";
 
+          # `pkgs.writer.writeDash` doesn't provide error checking for some
+          # reason
           writer = pkgs.writers.makeScriptWriter {
             interpreter = "${pkgs.dash}/bin/dash";
             check = "${pkgs.dash}/bin/dash -n";
@@ -184,8 +202,6 @@
         { command = "waybar"; }
       ];
     };
-
-    checkConfig = false;
   };
 
   services.playerctld.enable = true;
