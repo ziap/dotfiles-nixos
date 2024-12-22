@@ -76,7 +76,6 @@
         up = "k";
         down = "j";
 
-        workspaces = ["1" "2" "3" "4" "5" "6" "7" "8" "9" "10"];
         resizeFactor = "40px";
 
         pactl = "${pkgs.pulseaudio}/bin/pactl";
@@ -130,15 +129,23 @@
         "${mod}+Comma" = "exec ${playerctl} previous";
 
         "--to-code ${mod}+s" = "mode \"${screenshotMode}\"";
-      }
-      // builtins.listToAttrs (map (x: let k = if x == "10" then "0" else x; in {
-        name = "${mod}+${k}";
-        value = "workspace number ${x}";
-      }) workspaces)
-      // builtins.listToAttrs (map (x: let k = if x == "10" then "0" else x; in {
-        name = "${mod}+Shift+${k}";
-        value = "move workspace number ${x}";
-      }) workspaces);
+
+        "${mod}+0" = "workspace number 10";
+        "${mod}+Shift+0" = "move workspace number 10";
+      } // builtins.listToAttrs (let
+        # Move and switch to workspace 1 -> 9
+        workspaces = map toString (pkgs.lib.range 1 9);
+
+        keybindSwitch = map (x: {
+          name = "${mod}+${x}";
+          value = "workspace number ${x}";
+        }) workspaces;
+
+        keybindMove = map (x: {
+          name = "${mod}+Shift+${x}";
+          value = "move workspace number ${x}";
+        }) workspaces;
+      in keybindSwitch ++ keybindMove);
 
       modes = {
         "${screenshotMode}" = let

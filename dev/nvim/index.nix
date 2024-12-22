@@ -2,8 +2,8 @@
 
 {
   programs.neovim = let
-    to_lua = str: /*vim*/ "lua << EOF\n${str}\nEOF\n";
-    to_lua_file = filename: to_lua (builtins.readFile filename);
+    toLua = str: /*vim*/ "lua << EOF\n${str}\nEOF\n";
+    toLuaFile = filename: toLua (builtins.readFile filename);
     theme = import ../../themes/current-theme.nix;
   in {
     enable = true;
@@ -21,17 +21,17 @@
 
       {
         plugin = lualine-nvim;
-        config = to_lua_file ./plugins/lualine.lua;
+        config = toLuaFile ./plugins/lualine.lua;
       }
 
       {
         plugin = telescope-nvim;
-        config = to_lua /*lua*/ "require'telescope'.setup {}";
+        config = toLua /*lua*/ "require'telescope'.setup {}";
       }
 
       {
         plugin = nvim-treesitter.withAllGrammars;
-        config = to_lua_file ./plugins/treesitter.lua;
+        config = toLuaFile ./plugins/treesitter.lua;
       }
 
       cmp-nvim-lsp
@@ -43,22 +43,22 @@
       cmp-cmdline
       {
         plugin = nvim-cmp;
-        config = to_lua_file ./plugins/cmp.lua;
+        config = toLuaFile ./plugins/cmp.lua;
       }
 
       {
         plugin = nvim-lspconfig;
-        config = to_lua_file ./plugins/lsp.lua;
+        config = toLuaFile ./plugins/lsp.lua;
       }
 
       {
         plugin = nvim-autopairs;
-        config = to_lua /*lua*/ "require'nvim-autopairs'.setup {}";
+        config = toLua /*lua*/ "require'nvim-autopairs'.setup {}";
       }
 
       {
         plugin = nvim-ts-autotag;
-        config = to_lua /*lua*/ "require'nvim-ts-autotag'.setup {}";
+        config = toLua /*lua*/ "require'nvim-ts-autotag'.setup {}";
       }
     ];
 
