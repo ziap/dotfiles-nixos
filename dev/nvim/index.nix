@@ -30,36 +30,14 @@
       }
 
       {
-        plugin = (nvim-treesitter.withPlugins (p: [
-          p.tree-sitter-python
-          p.tree-sitter-lua
-          p.tree-sitter-c
-          p.tree-sitter-cpp
-          p.tree-sitter-rust
-          p.tree-sitter-zig
-          p.tree-sitter-javascript
-          p.tree-sitter-typescript
-          p.tree-sitter-html
-          p.tree-sitter-css
-          p.tree-sitter-markdown
-          p.tree-sitter-markdown-inline
-          p.tree-sitter-bash
-          p.tree-sitter-fish
-          p.tree-sitter-jsdoc
-          p.tree-sitter-glsl
-          p.tree-sitter-nix
-          p.tree-sitter-nu
-          p.tree-sitter-toml
-          p.tree-sitter-json
-          p.tree-sitter-jsonc
-          p.tree-sitter-rasi
-        ]));
+        plugin = nvim-treesitter.withAllGrammars;
         config = to_lua_file ./plugins/treesitter.lua;
       }
 
       cmp-nvim-lsp
+      cmp-nvim-lsp-signature-help
       vim-vsnip
-      vim-vsnip-integ
+      cmp-vsnip
       cmp-buffer
       cmp-path
       cmp-cmdline
