@@ -35,11 +35,12 @@
           default = "DuckDuckGo";
           force = true;
           engines = let
-            removed = [ "Bing" "Google" "Amazon.com" "Wikipedia (en)" "eBay" ];
-          in builtins.listToAttrs (map (engine: {
-            name = engine;
-            value = { metaData.hidden = true; };
-          }) removed);
+            engines = [ "Bing" "Google" "Amazon.com" "Wikipedia (en)" "eBay" ];
+            hide = engine: {
+              name = engine;
+              value = { metaData.hidden = true; };
+            };
+          in builtins.listToAttrs (map hide engines);
         };
         userChrome = /*css*/ ''
           /* Remove extra buttons and bookmark bar */
