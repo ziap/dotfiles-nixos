@@ -52,7 +52,6 @@ in {
     wrapperFeatures.gtk = true;
     extraPackages = [];
   };
-  programs.fish.enable = true;
 
   services.flatpak.enable = true;
   documentation.dev.enable = true;
