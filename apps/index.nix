@@ -33,7 +33,7 @@
     };
 
     iconTheme = {
-      name = "ePapirus";
+      name = "ePapirus-Dark";
       package = pkgs.epapirus-icon-theme;
     };
   };
