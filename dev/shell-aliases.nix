@@ -1,6 +1,6 @@
 shell: {
   cat = "bat";
-  ls = "eza --git --icons";
+  ls = "eza";
   ll = "ls -l";
   la = "ls -a";
   lla = "ls -la";

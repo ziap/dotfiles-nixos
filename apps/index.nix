@@ -7,6 +7,7 @@
     ./mimeapps.nix
     ./zathura.nix
     ./imv.nix
+    ./mpv.nix
   ];
 
   # GNOME related configurations
@@ -25,6 +26,7 @@
     };
   };
 
+  # Set the theme and icons of GTK applications
   gtk = {
     enable = true;
     theme = {

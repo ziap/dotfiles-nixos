@@ -67,14 +67,14 @@
         "urgent" = mkColor "#${theme.regular1}" "#${theme.foreground}";
       };
       keybindings = let
-        term = "${pkgs.kitty}/bin/kitty";
+        term = "${config.programs.kitty.package}/bin/kitty";
 
-        rofi = "${pkgs.rofi-wayland}/bin/rofi";
+        rofi = "${config.programs.rofi.package}/bin/rofi";
         menu = "${rofi} -show drun | swaymsg";
         file = "${rofi} -show filebrowser | swaymsg";
         power = "${rofi} -show powermenu | swaymsg";
 
-        lock = "${pkgs.swaylock}/bin/swaylock";
+        lock = "${config.programs.swaylock.package}/bin/swaylock";
 
         browser = "${config.programs.firefox.finalPackage}/bin/firefox";
         privateBrowser = "${browser} --private-window";

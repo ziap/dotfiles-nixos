@@ -34,6 +34,8 @@
         search = {
           default = "DuckDuckGo";
           force = true;
+
+          # Remove the rest of the search engines
           engines = let
             engines = [ "Bing" "Google" "Amazon.com" "Wikipedia (en)" "eBay" ];
             hide = engine: {

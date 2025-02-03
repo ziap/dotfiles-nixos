@@ -56,17 +56,17 @@ in {
   services.flatpak.enable = true;
   documentation.dev.enable = true;
 
-  # rtkit is optional but recommended
+  # Enable Pipewire (multimedia codecs)
+  # <https://nixos.wiki/wiki/PipeWire>
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
   };
 
+  # Enable XDG Desktop integration for Sway
   xdg.portal = {
     enable = true;
     wlr.enable = true;

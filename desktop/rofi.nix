@@ -5,7 +5,7 @@
     enable = true;
     package = pkgs.rofi-wayland;
     extraConfig = let
-      kitty = "${pkgs.kitty}/bin/kitty";
+      kitty = "${config.programs.kitty.package}/bin/kitty";
       writer = pkgs.writers.makeScriptWriter {
         interpreter = "${pkgs.luajit}/bin/luajit";
         check = "${pkgs.luajitPackages.luacheck}/bin/luacheck";
