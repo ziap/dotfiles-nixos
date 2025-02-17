@@ -6,8 +6,6 @@
     keybindings = let
       mod = "ctrl+shift";
     in {
-      "${mod}+n" = "new_os_window_with_cwd";
-
       "${mod}+enter" = "new_window_with_cwd";
       "${mod}+m"     = "move_window_to_top";
       "${mod}+j"     = "next_window";
@@ -17,6 +15,9 @@
       "${mod}+l" = "next_tab";
       "${mod}+h" = "previous_tab";
       "${mod}+q" = "close_tab";
+
+      "${mod}+p" = "remote_control scroll-window 0.5p-";
+      "${mod}+n" = "remote_control scroll-window 0.5p+";
 
       "${mod}+c" = "copy_to_clipboard";
       "${mod}+v" = "paste_from_clipboard";
