@@ -61,7 +61,7 @@
       application-fallback-icon = "run-build";
       
       terminal = kitty;
-      ssh-command = "${kitty} -- kitten ssh {host}";
+      ssh-command = "${kitty} kitten ssh {host}";
       drun-display-format = " {name} ";
       sidebar-mode = true;
       matching = "fuzzy";

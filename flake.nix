@@ -11,10 +11,13 @@
   };
 
   outputs = { nixpkgs, home-manager, ... }: let
+    forAllSystems = nixpkgs.lib.genAttrs nixpkgs.lib.systems.flakeExposed;
     pkgs = nixpkgs.legacyPackages.x86_64-linux;
   in {
     # Set home manager as the default package so that we can `nix run .`
-    defaultPackage = home-manager.defaultPackage;
+    packages = forAllSystems (system: {
+      default = home-manager.packages.${system}.default;
+    });
 
     # Home manager configuration modules
     homeConfigurations."zap" = home-manager.lib.homeManagerConfiguration {

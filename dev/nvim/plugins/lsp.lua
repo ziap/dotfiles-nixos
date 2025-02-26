@@ -8,6 +8,7 @@ local servers = {
   'emmet_ls',
   'rust_analyzer',
   'nushell',
+  'svelte',
 }
 
 local capabilities = require'cmp_nvim_lsp'.default_capabilities()
