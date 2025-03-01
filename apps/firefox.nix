@@ -7,7 +7,7 @@
       DisableTelemetry = true;
       DisableFirefoxStudies = true;
       EnableTrackingProtection = {
-        Value= true;
+        Value = true;
         Locked = true;
         Cryptomining = true;
         Fingerprinting = true;
@@ -101,7 +101,6 @@
           "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
 
           # Disable pinned sites and bookmarks
-          "browser.newtabpage.pinned" = "";
           "browser.toolbars.bookmarks.visibility" = "never";
 
           # Force locale
@@ -109,9 +108,7 @@
           "general.useragent.locale" = "en-US";
 
           # Disable sponsored + topsites
-          "browser.newtabpage.activity-stream.showSponsored" = false; # [FF58+] Pocket > Sponsored Stories
-          "browser.newtabpage.activity-stream.showSponsoredTopSites" = false; # [FF83+] Sponsored shortcuts
-          "browser.newtabpage.activity-stream.default.sites" = "";
+          "browser.topsites.component.enabled" = false;
           "browser.topsites.contile.enabled" = false;
           "browser.topsites.useRemoteSetting" = false;
 
@@ -152,8 +149,6 @@
           "toolkit.coverage.endpoint.base" = "";
 
           "browser.ping-centre.telemetry" = false;
-          "browser.newtabpage.activity-stream.feeds.telemetry" = false;
-          "browser.newtabpage.activity-stream.telemetry" = false;
 
           "app.shield.optoutstudies.enabled" = false;
           "app.normandy.enabled" = false;
