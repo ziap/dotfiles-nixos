@@ -28,7 +28,7 @@
       set fish_greeting
 
       set -g fish_key_bindings fish_vi_key_bindings
-      bind -M insert -k nul accept-autosuggestion
+      bind -M insert ctrl-space accept-autosuggestion
       bind -M insert \cP up-or-search
       bind -M insert \cN down-or-search
       bind -M insert \cF forward-or-edit
