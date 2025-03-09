@@ -76,8 +76,8 @@
             }
           }
 
-          #tab-notification-deck {
-            width: 100%;
+          #notifications-toolbar {
+            width: 100% !important;
           }
 
           /* Remove navigation bar color */
