@@ -32,12 +32,12 @@
       default = {
         id = 0;
         search = {
-          default = "DuckDuckGo";
+          default = "ddg";
           force = true;
 
           # Remove the rest of the search engines
           engines = let
-            engines = [ "Bing" "Google" "Amazon.com" "Wikipedia (en)" "eBay" ];
+            engines = [ "bing" "google" "amazondotcom-us" "wikipedia" "ebay" ];
             hide = engine: {
               name = engine;
               value = { metaData.hidden = true; };
