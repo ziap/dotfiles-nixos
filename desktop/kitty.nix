@@ -11,6 +11,15 @@
       "${mod}+j"     = "next_window";
       "${mod}+k"     = "previous_window";
 
+      "${mod}+equal"  = "change_font_size all +2.0";
+      "${mod}+plus"   = "change_font_size all +2.0";
+      "${mod}+kp_add" = "change_font_size all +2.0";
+
+      "${mod}+minus"       = "change_font_size all -2.0";
+      "${mod}+kp_subtract" = "change_font_size all -2.0";
+
+      "${mod}+0" = "change_font_size all 0";
+
       "${mod}+t" = "new_tab_with_cwd";
       "${mod}+l" = "next_tab";
       "${mod}+h" = "previous_tab";
