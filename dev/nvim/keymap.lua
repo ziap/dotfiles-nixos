@@ -65,12 +65,6 @@ nmap('<leader>o', ':wincmd o<cr>', true)
 -- Keybinds with shift
 nmap('Y', 'y$') -- Yank to the end
 nmap('U', ':redo<cr>') -- Redo
-vmap('J', 'j')
-vmap('K', 'k')
-
--- Filthy emacs(ish) bindings
-nmap('<c-n>', '<c-d>zz')
-nmap('<c-p>', '<c-u>zz')
 
 -- Move line up and down
 nmap('<a-j>', ':move +1<cr>', true)
@@ -87,8 +81,10 @@ nmap('s', ':s//g<left><left>') -- Line
 nmap('S', ':%s//g<left><left>') -- All
 vmap('s', ':s//g<left><left>') -- Selection
 
--- Prevent Ctrl-C from canceling block insertion
-imap('<c-c>', '<esc>')
+-- Insertion mode keybinds
+imap('<c-c>', '<esc>') -- Prevent Ctrl-C from canceling block insertion
+imap('<c-f>', '<right>')
+imap('<c-b>', '<left>')
 
 -- Toggle light and dark theme
 nmap('<c-r>', function()

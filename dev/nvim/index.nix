@@ -55,16 +55,6 @@
         plugin = nvim-lspconfig;
         config = toLuaFile ./plugins/lsp.lua;
       }
-
-      {
-        plugin = nvim-autopairs;
-        config = toLua /*lua*/ "require'nvim-autopairs'.setup {}";
-      }
-
-      {
-        plugin = nvim-ts-autotag;
-        config = toLua /*lua*/ "require'nvim-ts-autotag'.setup {}";
-      }
     ];
 
     extraPackages = with pkgs; [
