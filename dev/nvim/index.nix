@@ -25,6 +25,11 @@
       }
 
       {
+        plugin = pkgs.vimPlugins.indent-blankline-nvim;
+        config = toLua /*lua*/ "require'ibl'.setup {}";
+      }
+
+      {
         plugin = lualine-nvim;
         config = toLuaFile ./plugins/lualine.lua;
       }
@@ -61,13 +66,11 @@
       xclip
       wl-clipboard
 
-      # LSPs
+      # LSPs for languages that doesn't need complex version management
       vscode-langservers-extracted
       nodePackages.typescript-language-server
       emmet-ls
       clang-tools
-
-      # Pyright and rust analyzer can be install with development shells
     ];
 
     extraLuaConfig = ''
