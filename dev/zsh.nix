@@ -21,7 +21,7 @@
     };
     syntaxHighlighting.enable = true;
 
-    initExtra = /*sh*/ ''
+    initContent = /*sh*/ ''
       ## Activate vi mode.
       bindkey -v
       
