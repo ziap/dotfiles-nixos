@@ -1,39 +1,26 @@
-local cmp = require'cmp'
+require'blink.cmp'.setup {
+  keymap = {
+    preset = 'none',
 
-cmp.setup({
-  snippet = {
-    expand = function(args)
-      vim.fn['vsnip#anonymous'](args.body)
-    end
-  },
-  mapping = cmp.mapping.preset.insert({
-    ['<c-b>'] = cmp.mapping.scroll_docs(-4),
-    ['<c-f>'] = cmp.mapping.scroll_docs(4),
-    ['<c-space>'] = cmp.mapping.confirm { select = true },
-    ['<c-e>'] = cmp.mapping.abort(),
-  }),
-  sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
-    { name = 'nvim_lsp_signature_help' },
-    { name = 'vsnip' },
-  }, {
-    { name = 'buffer' },
-    { name = 'path' },
-  }),
-})
+    ['<C-space>'] = { 'show', 'select_and_accept' },
 
-cmp.setup.cmdline({'/', '?'}, {
-  mapping = cmp.mapping.preset.cmdline(),
-  sources = {
-    { name = 'buffer' },
-  },
-})
+    ['<C-p>'] = { 'select_prev', 'fallback_to_mappings' },
+    ['<C-n>'] = { 'select_next', 'fallback_to_mappings' },
 
-cmp.setup.cmdline(':', {
-  mapping = cmp.mapping.preset.cmdline(),
-  sources = cmp.config.sources {
-    { name = 'cmdline' },
-    { name = 'cmdline_history' },
-    { name = 'path' },
+    ['<C-b>'] = { 'scroll_documentation_up', 'fallback' },
+    ['<C-f>'] = { 'scroll_documentation_down', 'fallback' },
   },
-})
+
+  appearance = {
+    nerd_font_variant = 'mono',
+  },
+
+  completion = {
+    documentation = { auto_show = true },
+    ghost_text = { enabled = true },
+  },
+
+  signature = {
+    enabled = true,
+  },
+}

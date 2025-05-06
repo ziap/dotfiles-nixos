@@ -25,11 +25,6 @@
       }
 
       {
-        plugin = pkgs.vimPlugins.indent-blankline-nvim;
-        config = toLua /*lua*/ "require'ibl'.setup {}";
-      }
-
-      {
         plugin = lualine-nvim;
         config = toLuaFile ./plugins/lualine.lua;
       }
@@ -44,15 +39,8 @@
         config = toLuaFile ./plugins/treesitter.lua;
       }
 
-      cmp-nvim-lsp
-      cmp-nvim-lsp-signature-help
-      vim-vsnip
-      cmp-vsnip
-      cmp-buffer
-      cmp-path
-      cmp-cmdline
       {
-        plugin = nvim-cmp;
+        plugin = blink-cmp;
         config = toLuaFile ./plugins/cmp.lua;
       }
 

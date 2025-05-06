@@ -11,7 +11,7 @@ local servers = {
   'svelte',
 }
 
-local capabilities = require'cmp_nvim_lsp'.default_capabilities()
+local capabalities = require'blink.cmp'.get_lsp_capabilities() 
 
 for i, name in ipairs(servers) do
   require'lspconfig'[name].setup { 

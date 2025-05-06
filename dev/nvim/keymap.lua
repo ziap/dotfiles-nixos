@@ -81,10 +81,8 @@ nmap('s', ':s//g<left><left>') -- Line
 nmap('S', ':%s//g<left><left>') -- All
 vmap('s', ':s//g<left><left>') -- Selection
 
--- Insertion mode keybinds
-imap('<c-c>', '<esc>') -- Prevent Ctrl-C from canceling block insertion
-imap('<c-f>', '<right>')
-imap('<c-b>', '<left>')
+-- Prevent Ctrl-C from canceling block insertion
+imap('<c-c>', '<esc>')
 
 -- Toggle light and dark theme
 nmap('<c-r>', function()
