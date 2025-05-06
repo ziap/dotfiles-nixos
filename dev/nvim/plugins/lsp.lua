@@ -11,11 +11,6 @@ local servers = {
   'svelte',
 }
 
-local capabalities = require'blink.cmp'.get_lsp_capabilities() 
-
-for i, name in ipairs(servers) do
-  require'lspconfig'[name].setup { 
-    -- Enable completion
-    capabilities = capabilities,
-  }
+for _, name in ipairs(servers) do
+  vim.lsp.enable(name)
 end
