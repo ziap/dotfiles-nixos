@@ -2,8 +2,6 @@
 
 {
   programs.neovim = let
-    toLua = str: /*vim*/ "lua << EOF\n${str}\nEOF\n";
-    toLuaFile = filename: toLua (builtins.readFile filename);
     theme = import ../../themes/current-theme.nix;
   in {
     enable = true;
@@ -15,39 +13,12 @@
 
     plugins = with pkgs.vimPlugins; [
       nvim-web-devicons
-
-      {
-        plugin = pkgs.vimPlugins.${theme.nvim.plugin};
-        config = /*vim*/ ''
-          colorscheme ${theme.nvim.colorscheme}
-          set background=dark
-        '';
-      }
-
-      {
-        plugin = lualine-nvim;
-        config = toLuaFile ./plugins/lualine.lua;
-      }
-
-      {
-        plugin = telescope-nvim;
-        config = toLua /*lua*/ "require'telescope'.setup {}";
-      }
-
-      {
-        plugin = nvim-treesitter.withAllGrammars;
-        config = toLuaFile ./plugins/treesitter.lua;
-      }
-
-      {
-        plugin = blink-cmp;
-        config = toLuaFile ./plugins/cmp.lua;
-      }
-
-      {
-        plugin = nvim-lspconfig;
-        config = toLuaFile ./plugins/lsp.lua;
-      }
+      lualine-nvim
+      telescope-nvim
+      nvim-treesitter.withAllGrammars
+      blink-cmp
+      nvim-lspconfig
+      pkgs.vimPlugins.${theme.nvim.plugin}
     ];
 
     extraPackages = with pkgs; [
@@ -61,7 +32,16 @@
       clang-tools
     ];
 
-    extraLuaConfig = ''
+    extraLuaConfig = /* lua */ ''
+      vim.cmd.colorscheme '${theme.nvim.colorscheme}'
+      vim.opt.background = 'dark'
+
+      require'telescope'.setup{}
+      ${builtins.readFile ./plugins/lualine.lua}
+      ${builtins.readFile ./plugins/treesitter.lua}
+      ${builtins.readFile ./plugins/lsp.lua}
+      ${builtins.readFile ./plugins/cmp.lua}
+
       ${builtins.readFile ./options.lua}
       ${builtins.readFile ./keymap.lua}
       ${builtins.readFile ./autocmd.lua}

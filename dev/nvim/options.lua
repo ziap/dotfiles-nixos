@@ -21,13 +21,18 @@ vim.opt.smartindent = true
 
 -- Integration
 vim.opt.mouse = 'nv'
-vim.opt.clipboard = 'unnamedplus'
 vim.opt.ttyfast = true
+
+-- Sync clipboard lazily
+vim.schedule(function()
+  vim.opt.clipboard = 'unnamedplus'
+end)
 
 -- Layout
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.cursorline = true
+vim.opt.showmode = false
 
 -- Disable backup
 vim.opt.backup = false
