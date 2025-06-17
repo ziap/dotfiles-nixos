@@ -35,8 +35,8 @@
     };
 
     iconTheme = {
-      name = "ePapirus-Dark";
-      package = pkgs.epapirus-icon-theme;
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
     };
   };
 }
