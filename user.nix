@@ -76,7 +76,10 @@ in {
   # Virtualization
   programs.virt-manager.enable = true;
   virtualisation = {
-    libvirtd.enable = true;
+    libvirtd = {
+      enable = true;
+      qemu.vhostUserPackages = [ pkgs.virtiofsd ];
+    };
     spiceUSBRedirection.enable = true;
   };
 }
