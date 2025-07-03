@@ -29,7 +29,7 @@ local options = {
   {
     name = "Lock",
     icon = "system-lock-screen",
-    command = "swaylock",
+    command = "hyprlock -c ${./hyprlock/hyprlock.conf}",
   },
   {
     name = "Log out",
@@ -256,7 +256,7 @@ binds {
   Mod+Q hotkey-overlay-title="Open the power menu: rofi" { spawn ${rofi} "-show" "powermenu"; }
   Mod+Shift+Q { quit; }
   Mod+E hotkey-overlay-title="Open the file browser: rofi" { spawn ${rofi} "-show" "filebrowser"; }
-  Mod+Z hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
+  Mod+Z hotkey-overlay-title="Lock the Screen: swaylock" { spawn "hyprlock" "-c" "${./hyprlock/hyprlock.conf}"; }
 
   // Example volume keys mappings for PipeWire & WirePlumber.
   // The allow-when-locked=true property makes them work even when the session is locked.
