@@ -3,6 +3,11 @@
 let
   username = "zap";
 in {
+  imports = [
+    ./desktop/niri.nix
+    ./desktop/kitty.nix
+  ];
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${username} = {
     isNormalUser = true;
@@ -20,13 +25,12 @@ in {
     vim
     git zip unzip wget file
     man-pages man-pages-posix
-    wineWowPackages.stable
   ];
 
   # Auto login
   services.greetd = let 
     tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
-    session = "${pkgs.sway}/bin/sway";
+    session = "${config.programs.niri.package}/bin/niri-session";
   in {
     enable = true;
     settings = {
@@ -35,22 +39,13 @@ in {
         user = username;
       };
       default_session = {
-        command = ''
+        command = /*sh*/ ''
           ${tuigreet} --greeting 'Welcome to NixOS!' --asterisks --time
             --remember --remember-user-session -cmd ${session}
         '';
         user = "greeter";
       };
     };
-  };
-
-  # Enable sway and required programs
-  services.gnome.gnome-keyring.enable = true;
-  programs.light.enable = true;
-  programs.sway = {
-    enable = true;
-    wrapperFeatures.gtk = true;
-    extraPackages = [];
   };
 
   services.flatpak.enable = true;
@@ -64,13 +59,6 @@ in {
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-  };
-
-  # Enable XDG Desktop integration for Sway
-  xdg.portal = {
-    enable = true;
-    wlr.enable = true;
-    extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
   };
 
   # Virtualization

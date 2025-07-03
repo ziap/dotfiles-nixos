@@ -24,5 +24,8 @@
       inherit pkgs;
       modules = [ ./home.nix ];
     };
+    nixosModules.userConfig = { config, ... }: {
+      imports = [ ./user.nix ];
+    };
   };
 }

@@ -12,7 +12,6 @@
   imports = [
     ./dev/index.nix
     ./apps/index.nix
-    ./desktop/index.nix
   ];
 
   fonts.fontconfig.enable = true;
