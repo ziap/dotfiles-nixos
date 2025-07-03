@@ -41,7 +41,7 @@ local options = {
 for _, opt in ipairs(options) do
   if arg[1] then
     if opt.name == arg[1] then
-      os.execute(opt.command..' > /dev/null 2>&1')
+      os.execute(opt.command..' > /dev/null 2>&1 &')
     end
   else
     print(opt.name..'\0icon\x1f'..opt.icon)
