@@ -70,4 +70,6 @@ in {
     };
     spiceUSBRedirection.enable = true;
   };
+
+  programs.hyprlock.enable = true;
 }
