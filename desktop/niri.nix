@@ -7,41 +7,42 @@ let
   };
 
   powermenu = luaWriter "powermenu.lua" /*lua*/ ''
--- Use a list because table keys are randomly sorted
--- It's also easier to add options or edit them this way
+local lock = "hyprlock -c ${./hyprlock/hyprlock.conf}"
 
 local options = {
   {
     name = "Sleep",
     icon = "system-suspend",
-    command = "systemctl suspend",
+    commands = { lock, "systemctl suspend" },
   },
   {
     name = "Shut down",
     icon = "system-shutdown",
-    command = "systemctl poweroff",
+    commands = { "systemctl poweroff" },
   },
   {
     name = "Restart",
     icon = "system-reboot",
-    command = "systemctl reboot",
+    commands = { "systemctl reboot" },
   },
   {
     name = "Lock",
     icon = "system-lock-screen",
-    command = "hyprlock -c ${./hyprlock/hyprlock.conf}",
+    commands = { lock },
   },
   {
     name = "Log out",
     icon = "system-log-out",
-    command = "niri msg action quit -s",
+    commands = { "niri msg action quit -s" },
   }
 }
 
 for _, opt in ipairs(options) do
   if arg[1] then
     if opt.name == arg[1] then
-      os.execute(opt.command..' > /dev/null 2>&1 &')
+      for _, command in ipairs(opt.commands) do
+        os.execute(command..' > /dev/null 2>&1 &')
+      end
     end
   else
     print(opt.name..'\0icon\x1f'..opt.icon)
