@@ -251,13 +251,13 @@ overview {
 
 binds {
   // Suggested binds for running programs: terminal, app launcher, screen locker.
-  Mod+Return hotkey-overlay-title="Open a Terminal: kitty" { spawn "${pkgs.kitty}/bin/kitty"; }
-  Mod+Shift+Return hotkey-overlay-title="Run an Application: rofi" { spawn ${rofi} "-show" "drun"; }
-  Mod+B hotkey-overlay-title="Open the web browser: firefox" { spawn "firefox"; }
-  Mod+Q hotkey-overlay-title="Open the power menu: rofi" { spawn ${rofi} "-show" "powermenu"; }
-  Mod+Shift+Q { quit; }
-  Mod+E hotkey-overlay-title="Open the file browser: rofi" { spawn ${rofi} "-show" "filebrowser"; }
-  Mod+Z hotkey-overlay-title="Lock the Screen: swaylock" { spawn "hyprlock" "-c" "${./hyprlock/hyprlock.conf}"; }
+  Mod+Return       hotkey-overlay-title="Open a Terminal: kitty"         { spawn "${pkgs.kitty}/bin/kitty"; }
+  Mod+Shift+Return hotkey-overlay-title="Run an Application: rofi"       { spawn ${rofi} "-show" "drun"; }
+  Mod+B            hotkey-overlay-title="Open the web browser: firefox"  { spawn "firefox"; }
+  Mod+Shift+B      hotkey-overlay-title="Open the web browser (private)" { spawn "firefox" "--private-window"; }
+  Mod+Q            hotkey-overlay-title="Open the power menu: rofi"      { spawn ${rofi} "-show" "powermenu"; }
+  Mod+E            hotkey-overlay-title="Open the file browser: rofi"    { spawn ${rofi} "-show" "filebrowser"; }
+  Mod+Z            hotkey-overlay-title="Lock the Screen: hyprlock"      { spawn "hyprlock" "-c" "${./hyprlock/hyprlock.conf}"; }
 
   // Example volume keys mappings for PipeWire & WirePlumber.
   // The allow-when-locked=true property makes them work even when the session is locked.
