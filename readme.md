@@ -9,14 +9,14 @@ My custom environment ported to NixOS and managed with home-manager
 ## Informations
 
 - OS: [NixOS](https://nixos.org/)
-- WM: [sway](https://swaywm.org/)
-- Shell: [fish](https://fishshell.com/)
-- Editor: [neovim](https://neovim.io/)
-- Terminal: [kitty](https://sw.kovidgoyal.net/kitty/)
-- Browser: [firefox](https://www.mozilla.org/en-US/firefox/)
-- Launcher: [rofi](https://github.com/davatorium/rofi), [wayland fork](https://github.com/lbonn/rofi)
-- Bar: [waybar](https://github.com/Alexays/Waybar)
-- Colorscheme: [gruvbox](https://github.com/morhetz/gruvbox)
+- WM: [Niri](https://github.com/YaLTeR/niri/)
+- Shell: [Fish](https://fishshell.com/) with [Starship prompt](//starship.rs/)
+- Editor: [Neovim](https://neovim.io/)
+- Terminal: [Kitty](https://sw.kovidgoyal.net/kitty/)
+- Browser: [Firefox](https://www.mozilla.org/en-US/firefox/)
+- Launcher: [Rofi](https://github.com/davatorium/rofi), [wayland fork](https://github.com/lbonn/rofi)
+- Bar: [Waybar](https://github.com/Alexays/Waybar)
+- Colorscheme: [Gruvbox](https://github.com/morhetz/gruvbox)
 
 ## Screenshots
 
@@ -31,7 +31,7 @@ git clone https://github.com/ziap/dotfiles-nixos dotfiles
 cd dotfiles
 ```
 
-Change the username home directory in `home.nix` and `user.nix`
+Change the username and home directory in `home.nix` and `user.nix`
 
 ```nix
 # home.nix
@@ -56,7 +56,7 @@ in {
 Include `user.nix` in your `configuration.nix`
 
 ```nix
-# Configuration.nix
+# configuration.nix
 {
   imports = [
     # Include the results of the hardware scan.
@@ -71,6 +71,7 @@ Include `user.nix` in your `configuration.nix`
 Install and activate home-manager
 
 ```bash
+sudo nixos rebuild switch
 nix run . -- switch --flake .
 ```
 
