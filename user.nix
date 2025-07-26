@@ -25,6 +25,7 @@ in {
     vim
     git zip unzip wget file
     man-pages man-pages-posix
+    distrobox
   ];
 
   # Auto login
@@ -64,6 +65,10 @@ in {
   # Virtualization
   programs.virt-manager.enable = true;
   virtualisation = {
+    podman = {
+      enable = true;
+      dockerCompat = true;
+    };
     libvirtd = {
       enable = true;
       qemu.vhostUserPackages = [ pkgs.virtiofsd ];
