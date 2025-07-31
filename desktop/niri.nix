@@ -182,6 +182,11 @@ input {
   }
 }
 
+cursor {
+  xcursor-theme "Bibata-Modern-Ice"
+  xcursor-size 32
+}
+
 output "eDP-1" {
   scale 1
   transform "normal"

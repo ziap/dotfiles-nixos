@@ -26,6 +26,7 @@ in {
     git zip unzip wget file
     man-pages man-pages-posix
     distrobox
+    bibata-cursors
   ];
 
   # Auto login
