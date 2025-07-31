@@ -183,8 +183,8 @@ input {
 }
 
 cursor {
-  xcursor-theme "Bibata-Modern-Ice"
-  xcursor-size 32
+  xcursor-theme "Bibata-Modern-Classic"
+  xcursor-size 24
 }
 
 output "eDP-1" {
