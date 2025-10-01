@@ -79,7 +79,7 @@ configuration {
 @theme "${./rofi/theme.rasi}"
   '';
 
-  rofi = ''"${pkgs.rofi-wayland}/bin/rofi" "-config" "${rofiConfig}"'';
+  rofi = ''"${pkgs.rofi}/bin/rofi" "-config" "${rofiConfig}"'';
 
   waybarConfig = pkgs.writeText "config" /*json*/ ''
 {
