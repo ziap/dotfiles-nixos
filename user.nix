@@ -31,7 +31,7 @@ in {
 
   # Auto login
   services.greetd = let 
-    tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
+    tuigreet = "${pkgs.tuigreet}/bin/tuigreet";
     session = "${config.programs.niri.package}/bin/niri-session";
   in {
     enable = true;
