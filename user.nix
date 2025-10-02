@@ -51,7 +51,6 @@ in {
   };
 
   services.flatpak.enable = true;
-  services.hypridle.enable = true;
   documentation.dev.enable = true;
 
   # Enable Pipewire (multimedia codecs)
