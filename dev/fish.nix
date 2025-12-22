@@ -9,14 +9,6 @@
         mkdir $argv
         cd $argv
       '';
-
-      forward-or-edit = /*fish*/ ''
-        if commandline -P
-          commandline -f forward-char
-        else
-          edit_command_buffer
-        end
-      '';
     };
 
     shellAliases = import ./shell-aliases.nix "fish" // {
@@ -31,7 +23,7 @@
       bind -M insert ctrl-space accept-autosuggestion
       bind -M insert \cP up-or-search
       bind -M insert \cN down-or-search
-      bind -M insert \cF forward-or-edit
+      bind -M insert \cF forward-char
       bind -M insert \cB backward-char
 
       set fish_cursor_default block
