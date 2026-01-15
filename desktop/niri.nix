@@ -197,7 +197,7 @@ layout {
   gaps 6
 
   center-focused-column "never"
-  default-column-width { proportion 0.5625; }
+  default-column-width { proportion 0.5; }
 
   focus-ring {
     off
@@ -286,6 +286,9 @@ binds {
   Mod+J { focus-window-down; }
   Mod+K { focus-window-up; }
   Mod+L { focus-column-right; }
+
+  Mod+WheelScrollDown { focus-workspace-down; }
+  Mod+WheelScrollUp   { focus-workspace-up; }
 
   Mod+Shift+H { move-column-left; }
   Mod+Shift+J { move-window-down; }
